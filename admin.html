@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>GÜR RENT A CAR | Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root{
+      --bg:#0f0f0f;
+      --panel:#1c1c1c;
+      --text:#f5f5f5;
+      --border:#333;
+      --accent:#f0c037;
+      --muted:#ccc;
+    }
+    body.light{
+      --bg:#f5f5f5;
+      --panel:#ffffff;
+      --text:#111111;
+      --border:#dddddd;
+      --accent:#e0a821;
+      --muted:#555555;
+    }
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      margin:0;
+      padding:16px;
+      transition:background .2s,color .2s;
+    }
+    .login-box,.panel{
+      max-width:960px;
+      margin:0 auto;
+      background:var(--panel);
+      padding:16px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      box-shadow:0 8px 24px rgba(0,0,0,.35);
+    }
+    h1{
+      font-size:20px;
+      margin-bottom:12px;
+      text-align:center;
+    }
+    h2{
+      font-size:15px;
+      margin:14px 0 6px;
+    }
+    label{display:block;margin-top:8px;font-size:13px;}
+    input[type="password"],
+    input[type="text"],
+    textarea,
+    select{
+      width:100%;
+      padding:7px;
+      border-radius:6px;
+      border:1px solid var(--border);
+      margin-top:4px;
+      background:rgba(0,0,0,.15);
+      color:var(--text);
+      font-size:13px;
+      box-sizing:border-box;
+    }
+    textarea{min-height:70px;}
+    button{
+      margin-top:8px;
+      padding:8px 16px;
+      border-radius:999px;
+      border:none;
+      background:var(--accent);
+      color:#111;
+      font-weight:600;
+      cursor:pointer;
+      font-size:13px;
+    }
+    button.small{padding:4px 10px;font-size:11px;margin-left:4px;}
+    button:disabled{opacity:.6;cursor:not-allowed;}
+    .hidden{display:none;}
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .small-note{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+    .field-box{
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:8px;
+      margin-top:8px;
+    }
+    .output-box{
+      margin-top:10px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:8px;
+      background:rgba(0,0,0,.25);
+    }
+    pre{
+      white-space:pre-wrap;
+      word-wrap:break-word;
+      font-size:11px;
+      color:#b8ffb8;
+      max-height:220px;
+      overflow:auto;
+    }
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:12px;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      font-size:11px;
+    }
+    .tabs{
+      display:flex;
+      overflow:auto;
+      gap:4px;
+      margin:10px 0;
+    }
+    .tab-btn{
+      flex:0 0 auto;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      font-size:12px;
+      cursor:pointer;
+    }
+    .tab-btn.active{
+      background:var(--accent);
+      color:#111;
+      border-color:var(--accent);
+    }
+    .section{display:none;}
+    .section.active{display:block;}
+    .char-counter{
+      font-size:10px;
+      text-align:right;
+      color:var(--muted);
+    }
+    .status-bar{
+      font-size:11px;
+      margin-top:4px;
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      flex-wrap:wrap;
+      color:var(--muted);
+    }
+    .status-bar span{
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#4caf50;
+    }
+    .dot.off{background:#888;}
+    .pill{
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      font-size:10px;
+    }
+    .theme-toggle{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      font-size:11px;
+    }
+    input[type="file"]{
+      border:none;
+      padding:0;
+      background:transparent;
+      color:var(--text);
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==== GİRİŞ ==== -->
+<div class="login-box" id="loginBox">
+  <h1>GÜR RENT A CAR – ADMIN GİRİŞ</h1>
+  <div class="top-row">
+    <span class="badge">SADE FRONTEND PANEL</span>
+    <span>Sistem Saati: <span id="adminClock">00:00:00</span></span>
+  </div>
+  <p style="font-size:13px;">
+    Bu panel, sitedeki <strong>SITE_CONFIG</strong> ayarlarını üretmek ve
+    <strong>index.html</strong> içine otomatik yerleştirmek içindir.
+  </p>
+  <label>Şifre</label>
+  <input type="password" id="passwordInput" placeholder="Şifreyi girin (varsayılan: gur2025)">
+  <button onclick="checkPassword()">GİRİŞ</button>
+  <p id="loginInfo" class="small-note"></p>
+</div>
+
+<!-- ==== PANEL ==== -->
+<div class="panel hidden" id="adminPanel">
+  <div class="top-row">
+    <div>
+      <strong>GÜR RENT A CAR – YÖNETİM PANELİ</strong><br>
+      <span class="small-note">Ayarları doldur → index.html seç → tek tıkla güncellenmiş index.html indir.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+      <div class="theme-toggle">
+        <label for="themeToggle">Tema:</label>
+        <select id="themeToggle">
+          <option value="dark">Koyu</option>
+          <option value="light">Açık</option>
+        </select>
+      </div>
+      <span>Sistem Saati: <span id="panelClock">00:00:00</span></span>
+    </div>
+  </div>
+
+  <!-- Sekmeler -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="genel">GENEL</button>
+    <button class="tab-btn" data-tab="whatsapp">WHATSAPP</button>
+    <button class="tab-btn" data-tab="cars">ARAÇLAR</button>
+    <button class="tab-btn" data-tab="yorumlar">YORUMLAR</button>
+    <button class="tab-btn" data-tab="advanced">İLERİ AYARLAR</button>
+    <button class="tab-btn" data-tab="export">ARAÇLAR & DIŞA AKTARIM</button>
+  </div>
+
+  <!-- GENEL -->
+  <div class="section active" id="section-genel">
+    <h2>1. GENEL & SEO AYARLARI</h2>
+    <div class="field-box">
+      <label>Kampanya Metni (Üst Sarı Şerit)</label>
+      <input type="text" id="campaignText" maxlength="200"
+             value="En az 3 gün kiralamalarda özel indirim için lütfen telefon veya WhatsApp ile bilgi alınız.">
+      <div class="char-counter" data-for="campaignText"></div>
+
+      <div class="two-col">
+        <div>
+          <label>Google Puanı</label>
+          <input type="text" id="googleRating" value="4.9">
+        </div>
+        <div>
+          <label>Yorum Sayısı (Örnek)</label>
+          <input type="text" id="googleRatingCount" value="27">
+        </div>
+      </div>
+
+      <label>Son Güncellenme Notu</label>
+      <div style="display:flex;gap:4px;align-items:center;">
+        <input type="text" id="lastUpdated" value="Sayfa son güncellenme tarihi: 28.11.2025">
+        <button type="button" class="small" onclick="setToday()">Bugünü Yaz</button>
+      </div>
+
+      <label>Havaalanı / Otogar Transfer Bilgisi</label>
+      <textarea id="havaalaniInfo">Şehir dışı ve yurt dışından gelen misafirlerimiz için Konya Havaalanı ve otogar gibi noktalardan Karaman’a ekstra ücret karşılığında transfer ve araç teslim hizmeti sunulabilmektedir.</textarea>
+
+      <label>Hero Mesajları (Her satır bir mesaj)</label>
+      <textarea id="heroMessages">Ekonomik, orta ve lüks segment araç seçenekleri.
+Şehir dışı ve yurt dışından gelen misafirler için ideal ulaşım çözümleri.
+Havaalanı ve otogar için servis imkanı, 7/24 iletişim desteği.</textarea>
+
+      <label>Hashtagler (boşlukla ayırın)</label>
+      <input type="text" id="hashtags" value="#gurrentacar #karamanarackiralama #karamanrentacar #arackiralama #konyaarackiralama #ahmetgür">
+    </div>
+  </div>
+
+  <!-- WHATSAPP -->
+  <div class="section" id="section-whatsapp">
+    <h2>2. WHATSAPP & İLETİŞİM MESAJLARI</h2>
+    <div class="field-box">
+      <label>Hazır WhatsApp Mesajları (format: BAŞLIK|MESAJ)</label>
+      <textarea id="waQuick">GÜNLÜK FİYAT SOR|Merhaba, güncel günlük araç kiralama fiyatlarınızı öğrenmek istiyorum.
+AYLIK / UZUN DÖNEM BİLGİ|Merhaba, aylık veya uzun dönem araç kiralama için bilgi almak istiyorum.
+HAVAALANI / OTOGAR TRANSFER|Merhaba, havaalanı veya otogardan Karaman’a transfer ve araç teslim için fiyat bilgisi almak istiyorum.</textarea>
+      <p class="small-note">
+        Her satır bir butondur. Sol taraf buton metni, sağ taraf WhatsApp’a giden mesajdır.
+      </p>
+    </div>
+  </div>
+
+  <!-- ARAÇLAR -->
+  <div class="section" id="section-cars">
+    <h2>3. ARAÇ (FİLO) YÖNETİMİ</h2>
+    <div class="field-box">
+      <label>Araçlar (her satır: İSİM|SEGMENT|GÖRSEL|POPÜLER (true/false)|RENKLER|WHATSAPP MESAJI)</label>
+      <textarea id="cars">Hyundai Accent Blue|Ekonomik|accent-blue.png|true|Beyaz / Gri|Merhaba, Hyundai Accent Blue (Ekonomik Segment) için FİYAT / BİLGİ isteği göndermek istiyorum.
+Ford Fiesta|Ekonomik|fiesta.png|false|Beyaz / Lacivert|Merhaba, Ford Fiesta (Ekonomik Segment) için FİYAT / BİLGİ isteği göndermek istiyorum.
+Peugeot 301|Orta|peugeot-301.png|false|Beyaz / Gri|Merhaba, Peugeot 301 (Orta Segment) için FİYAT / BİLGİ isteği göndermek istiyorum.
+Citroen C-Elysée|Orta|citroen-c-elysee.png|true|Beyaz / Gri|Merhaba, Citroen C-Elysée (Orta Segment) için FİYAT / BİLGİ isteği göndermek istiyorum.
+Fiat Egea|Orta|fiat-egea.png|true|Beyaz / Gri / Siyah|Merhaba, Fiat Egea (Orta Segment) için FİYAT / BİLGİ isteği göndermek istiyorum.</textarea>
+      <p class="small-note">
+        SEGMENT alanı “Ekonomik” veya “Orta” olmalı. Lüks segment sitede metinle anlatılıyor.
+      </p>
+    </div>
+  </div>
+
+  <!-- YORUMLAR -->
+  <div class="section" id="section-yorumlar">
+    <h2>4. MÜŞTERİ YORUMLARI</h2>
+    <div class="field-box">
+      <label>Müşteri Yorumları (satır: İSİM|YORUM)</label>
+      <textarea id="testimonials">Fatih P.|Tıkır tıkır işleyen sistemleri var, tavsiye ederim.
+Salih K.|Aldığımız araç çok yeni ve temizdi.
+Melike A.|Firma ilgili, biz memnun kaldık.
+Rahmi B.|Her şey güzel.</textarea>
+    </div>
+  </div>
+
+  <!-- İLERİ AYARLAR -->
+  <div class="section" id="section-advanced">
+    <h2>5. İLERİ AYARLAR & GÜVENLİK NOTU</h2>
+    <div class="field-box">
+      <p class="small-note">
+        Bu panel sadece sizin cihazınızda çalışır. Hosting tarafında (Netlify) herhangi bir şifre veya gizli anahtar tutulmaz.
+        <strong>Tüm değişiklikler, üretilen index.html dosyasını yeniden yüklediğinizde</strong> aktif olur.
+      </p>
+
+      <label>Yeni Şifre (sadece kod üretir – otomatik değiştirmez)</label>
+      <input type="text" id="newPassword" placeholder="Örn: gur2026">
+      <button type="button" class="small" onclick="generatePasswordSnippet()">Şifre Satırı Üret</button>
+
+      <div class="output-box">
+        <strong>Şifre Kod Satırı:</strong>
+        <pre id="passwordSnippet">// Örnek çıktı: const PASSWORD = "yeniSifre";</pre>
+        <p class="small-note">
+          Bu satırı <strong>admin.html</strong> dosyanızdaki en üstte bulunan
+          <code>const PASSWORD = "..."</code> satırının yerine manuel olarak yapıştırmalısınız.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT / IMPORT / INDEX GÜNCELLEME -->
+  <div class="section" id="section-export">
+    <h2>6. SCRIPT ÖNİZLEME & DIŞA AKTARIM</h2>
+    <div class="field-box">
+      <button type="button" onclick="generateScript()">SADECE SCRIPT OLUŞTUR</button>
+      <button type="button" class="small" onclick="copyScript()">Panoya Kopyala</button>
+      <button type="button" class="small" onclick="downloadConfigJson()">Config JSON İndir</button>
+      <button type="button" class="small" onclick="resetToDefaults()">Varsayılanlara Dön</button>
+
+      <div class="output-box">
+        <strong>Oluşan SCRIPT (SITE_CONFIG):</strong>
+        <pre id="output"></pre>
+      </div>
+
+      <h3 style="font-size:14px;margin-top:10px;">Config JSON Yükle (İsteğe Bağlı)</h3>
+      <p class="small-note">
+        Daha önce indirdiğiniz JSON’u seçerseniz alanlar otomatik dolar.
+      </p>
+      <input type="file" id="configFile" accept=".json">
+      <button type="button" class="small" onclick="loadConfigJson()">JSON Yükle</button>
+    </div>
+
+    <h2 style="margin-top:16px;">7. TEK TIKLA: YENİ AYARLARI UYGULA → index.html İNDİR</h2>
+    <div class="field-box">
+      <label>Güncellemek istediğiniz mevcut <strong>index.html</strong> dosyasını seçin:</label>
+      <input type="file" id="indexFile" accept=".html">
+      <button type="button" onclick="autoUpdateIndex()">YENİ AYARLARI UYGULA &amp; GÜNCEL INDEX.HTML İNDİR</button>
+      <p id="updateResult" class="small-note"></p>
+    </div>
+
+    <div class="status-bar">
+      <span><span class="dot" id="autosaveDot"></span> Taslak kaydı: <span id="autosaveStatus">Henüz kaydedilmedi</span></span>
+      <span class="pill" id="validationStatus">Doğrulama: Henüz kontrol edilmedi</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =================== SABİT AYARLAR =================== */
+const PASSWORD = "gur2025";
+const STORAGE_KEY = "GurRentAdminForm_v1";
+const THEME_KEY = "GurRentAdminTheme_v1";
+
+/* =================== SAAT =================== */
+function updateClocks(){
+  const now = new Date();
+  const pad = n => (n<10 ? "0"+n : n);
+  const t = pad(now.getHours())+":"+pad(now.getMinutes())+":"+pad(now.getSeconds());
+  const c1 = document.getElementById("adminClock");
+  const c2 = document.getElementById("panelClock");
+  if(c1) c1.textContent = t;
+  if(c2) c2.textContent = t;
+}
+setInterval(updateClocks, 1000);
+updateClocks();
+
+/* =================== GİRİŞ =================== */
+function checkPassword(){
+  const val = document.getElementById("passwordInput").value;
+  const info = document.getElementById("loginInfo");
+  if(val === PASSWORD){
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+    if(info) info.textContent = "";
+  }else{
+    if(info) info.textContent = "Şifre hatalı.";
+  }
+}
+
+/* =================== TEMA =================== */
+const themeSelect = document.getElementById("themeToggle");
+function applyTheme(theme){
+  if(theme === "light"){
+    document.body.classList.add("light");
+  }else{
+    document.body.classList.remove("light");
+  }
+  localStorage.setItem(THEME_KEY, theme);
+}
+themeSelect.addEventListener("change", e => applyTheme(e.target.value));
+const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+themeSelect.value = savedTheme;
+applyTheme(savedTheme);
+
+/* =================== KARAKTER SAYACI =================== */
+function updateCharCounters(){
+  document.querySelectorAll(".char-counter").forEach(el=>{
+    const id = el.getAttribute("data-for");
+    const inp = document.getElementById(id);
+    if(!inp) return;
+    const max = inp.getAttribute("maxlength") || "";
+    el.textContent = max ? `${inp.value.length}/${max}` : `${inp.value.length} karakter`;
+  });
+}
+
+/* =================== SEKMELER =================== */
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const tab = btn.getAttribute("data-tab");
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".section").forEach(sec=>{
+      sec.classList.toggle("active", sec.id === "section-"+tab);
+    });
+  });
+});
+
+/* =================== TARİH YARDIMCI =================== */
+function setToday(){
+  const d = new Date();
+  const gun = String(d.getDate()).padStart(2,"0");
+  const ay = String(d.getMonth()+1).padStart(2,"0");
+  const yil = d.getFullYear();
+  document.getElementById("lastUpdated").value =
+    `Sayfa son güncellenme tarihi: ${gun}.${ay}.${yil}`;
+  markChanged();
+}
+
+/* =================== FORM -> CONFIG NESNESİ =================== */
+function buildConfigObject(){
+  const campaignText = document.getElementById('campaignText').value.trim();
+  const googleRating = document.getElementById('googleRating').value.trim();
+  const googleRatingCount = document.getElementById('googleRatingCount').value.trim();
+  const lastUpdated = document.getElementById('lastUpdated').value.trim();
+  const havaalaniInfo = document.getElementById('havaalaniInfo').value.trim();
+
+  const heroLines = document.getElementById('heroMessages').value
+    .split('\n').map(l=>l.trim()).filter(Boolean);
+  const hashtags = document.getElementById('hashtags').value
+    .split(/\s+/).map(h=>h.trim()).filter(Boolean);
+
+  const waLines = document.getElementById('waQuick').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  const waArr = waLines.map(l=>{
+    const parts = l.split('|');
+    return {label:parts[0]||"", text:parts[1]||""};
+  });
+
+  const carLines = document.getElementById('cars').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  const cars = carLines.map(l=>{
+    const p = l.split('|');
+    return {
+      name:p[0]||"",
+      segment:p[1]||"",
+      image:p[2]||"",
+      popular:(p[3]||"").toLowerCase()==="true",
+      colors:p[4]||"",
+      waText:p[5]||""
+    };
+  });
+
+  const tLines = document.getElementById('testimonials').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  const testimonials = tLines.map(l=>{
+    const p = l.split('|');
+    return {name:p[0]||"", text:p[1]||""};
+  });
+
+  return {
+    campaignText,
+    googleRating,
+    googleRatingCount,
+    lastUpdated,
+    havaalaniTransferInfo: havaalaniInfo,
+    heroMessages: heroLines,
+    cars,
+    whatsappQuickMessages: waArr,
+    testimonials,
+    hashtags
+  };
+}
+
+/* =================== DOĞRULAMA =================== */
+function validateConfig(obj){
+  const errors = [];
+  if(!obj.campaignText) errors.push("Kampanya metni boş.");
+  if(!obj.heroMessages.length) errors.push("En az bir hero mesajı girin.");
+  if(!obj.cars.length) errors.push("En az bir araç satırı girin.");
+  if(!obj.whatsappQuickMessages.length) errors.push("En az bir WhatsApp mesajı girin.");
+  const pill = document.getElementById("validationStatus");
+  if(errors.length){
+    pill.textContent = "Doğrulama: Hatalar var";
+    pill.style.borderColor = "#ff9800";
+    pill.style.color = "#ffb74d";
+  }else{
+    pill.textContent = "Doğrulama: Temel kontroller OK";
+    pill.style.borderColor = "#4caf50";
+    pill.style.color = "#c5e1a5";
+  }
+  return errors;
+}
+
+/* =================== SCRIPT ÖNİZLEME =================== */
+function generateScript(){
+  const obj = buildConfigObject();
+  validateConfig(obj);
+  const script = "const SITE_CONFIG = " + JSON.stringify(obj, null, 2) + ";";
+  document.getElementById('output').textContent = script;
+}
+
+/* =================== KOPYALAMA / JSON İNDİRME =================== */
+function copyScript(){
+  const text = document.getElementById('output').textContent;
+  if(!text){
+    generateScript();
+  }
+  const finalText = document.getElementById('output').textContent;
+  if(!finalText){
+    alert("Önce SCRIPT OLUŞTUR butonuna basın.");
+    return;
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(finalText).then(()=>alert("Script panoya kopyalandı."));
+  }else{
+    const temp = document.createElement("textarea");
+    temp.value = finalText;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    alert("Script panoya kopyalandı.");
+  }
+}
+
+function downloadConfigJson(){
+  const obj = buildConfigObject();
+  const json = JSON.stringify(obj, null, 2);
+  const blob = new Blob([json], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "gurrentacar-config.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* =================== JSON YÜKLEME =================== */
+function loadConfigJson(){
+  const input = document.getElementById("configFile");
+  if(!input.files.length){
+    alert("Lütfen bir JSON dosyası seçin.");
+    return;
+  }
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const obj = JSON.parse(e.target.result);
+      // Alanlara dağıt
+      if(obj.campaignText!==undefined) document.getElementById("campaignText").value = obj.campaignText;
+      if(obj.googleRating!==undefined) document.getElementById("googleRating").value = obj.googleRating;
+      if(obj.googleRatingCount!==undefined) document.getElementById("googleRatingCount").value = obj.googleRatingCount;
+      if(obj.lastUpdated!==undefined) document.getElementById("lastUpdated").value = obj.lastUpdated;
+      if(obj.havaalaniTransferInfo!==undefined) document.getElementById("havaalaniInfo").value = obj.havaalaniTransferInfo;
+      if(obj.heroMessages) document.getElementById("heroMessages").value = obj.heroMessages.join("\n");
+      if(obj.hashtags) document.getElementById("hashtags").value = obj.hashtags.join(" ");
+      if(obj.whatsappQuickMessages){
+        document.getElementById("waQuick").value =
+          obj.whatsappQuickMessages.map(x=>`${x.label}|${x.text}`).join("\n");
+      }
+      if(obj.cars){
+        document.getElementById("cars").value =
+          obj.cars.map(c=>`${c.name}|${c.segment}|${c.image}|${c.popular}|${c.colors}|${c.waText}`).join("\n");
+      }
+      if(obj.testimonials){
+        document.getElementById("testimonials").value =
+          obj.testimonials.map(t=>`${t.name}|${t.text}`).join("\n");
+      }
+      markChanged();
+      updateCharCounters();
+      alert("JSON config başarıyla yüklendi.");
+    }catch(err){
+      alert("JSON okunamadı: " + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+/* =================== ŞİFRE SATIRI OLUŞTURMA =================== */
+function generatePasswordSnippet(){
+  const val = document.getElementById("newPassword").value.trim();
+  const out = document.getElementById("passwordSnippet");
+  if(!val){
+    out.textContent = "// Lütfen yukarıya yeni şifre girin.";
+    return;
+  }
+  out.textContent = 'const PASSWORD = "' + val.replace(/"/g,'\\"') + '";';
+}
+
+/* =================== INDEX.HTML OTOMATİK GÜNCELLEME =================== */
+function autoUpdateIndex(){
+  const fileInput = document.getElementById('indexFile');
+  const resultEl = document.getElementById('updateResult');
+
+  if(!fileInput.files.length){
+    alert("Lütfen güncellemek istediğiniz index.html dosyasını seçin.");
+    return;
+  }
+
+  const obj = buildConfigObject();
+  validateConfig(obj);
+  const newScript = "const SITE_CONFIG = " + JSON.stringify(obj, null, 2) + ";";
+  document.getElementById('output').textContent = newScript;
+
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e){
+    let content = e.target.result;
+
+    const re = /const SITE_CONFIG\s*=\s*{[\s\S]*?};/;
+    if(!re.test(content)){
+      alert("index.html içinde SITE_CONFIG bulunamadı. Doğru dosyayı seçtiğinizden emin olun.");
+      return;
+    }
+    const updated = content.replace(re, newScript);
+
+    const blob = new Blob([updated], {type:"text/html"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "index.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    if(resultEl){
+      resultEl.textContent = "Yeni ayarlar uygulandı, güncellenmiş index.html indirildi. Bunu Netlify’ye yüklerseniz site yenilenir.";
+    }
+  };
+  reader.readAsText(file);
+}
+
+/* =================== OTOMATİK TASLAK KAYDI =================== */
+let saveTimeout = null;
+function markChanged(){
+  if(saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(saveDraft, 600);
+}
+
+function saveDraft(){
+  const obj = {
+    campaignText:document.getElementById("campaignText").value,
+    googleRating:document.getElementById("googleRating").value,
+    googleRatingCount:document.getElementById("googleRatingCount").value,
+    lastUpdated:document.getElementById("lastUpdated").value,
+    havaalaniInfo:document.getElementById("havaalaniInfo").value,
+    heroMessages:document.getElementById("heroMessages").value,
+    hashtags:document.getElementById("hashtags").value,
+    waQuick:document.getElementById("waQuick").value,
+    cars:document.getElementById("cars").value,
+    testimonials:document.getElementById("testimonials").value
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+  const dot = document.getElementById("autosaveDot");
+  const txt = document.getElementById("autosaveStatus");
+  if(dot) dot.classList.remove("off");
+  if(txt) txt.textContent = "Taslak kaydedildi.";
+}
+
+function loadDraft(){
+  const data = localStorage.getItem(STORAGE_KEY);
+  if(!data) return;
+  try{
+    const obj = JSON.parse(data);
+    if(obj.campaignText!==undefined) document.getElementById("campaignText").value = obj.campaignText;
+    if(obj.googleRating!==undefined) document.getElementById("googleRating").value = obj.googleRating;
+    if(obj.googleRatingCount!==undefined) document.getElementById("googleRatingCount").value = obj.googleRatingCount;
+    if(obj.lastUpdated!==undefined) document.getElementById("lastUpdated").value = obj.lastUpdated;
+    if(obj.havaalaniInfo!==undefined) document.getElementById("havaalaniInfo").value = obj.havaalaniInfo;
+    if(obj.heroMessages!==undefined) document.getElementById("heroMessages").value = obj.heroMessages;
+    if(obj.hashtags!==undefined) document.getElementById("hashtags").value = obj.hashtags;
+    if(obj.waQuick!==undefined) document.getElementById("waQuick").value = obj.waQuick;
+    if(obj.cars!==undefined) document.getElementById("cars").value = obj.cars;
+    if(obj.testimonials!==undefined) document.getElementById("testimonials").value = obj.testimonials;
+    const dot = document.getElementById("autosaveDot");
+    const txt = document.getElementById("autosaveStatus");
+    if(dot) dot.classList.add("off");
+    if(txt) txt.textContent = "Taslak yüklendi.";
+  }catch(e){
+    console.warn("Taslak okunamadı:", e);
+  }
+}
+
+/* =================== VARSAYILANLARA DÖN =================== */
+function resetToDefaults(){
+  if(!confirm("Tüm alanları varsayılan değerlere döndürmek istediğinize emin misiniz? Taslak üzeri yazılır.")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+/* =================== EVENT BAĞLAMA =================== */
+document.addEventListener("DOMContentLoaded", ()=>{
+  // Taslak yükle
+  loadDraft();
+  // Karakter sayacı
+  updateCharCounters();
+  document.querySelectorAll("input, textarea").forEach(el=>{
+    el.addEventListener("input", ()=>{
+      updateCharCounters();
+      markChanged();
+    });
+  });
+});
+</script>
+
+</body>
+</html>

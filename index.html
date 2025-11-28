@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>GÜR RENT A CAR Karaman | Ekonomik Araç Kiralama</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Temel SEO -->
+  <meta name="description" content="GÜR RENT A CAR, 2015 yılından beri Karaman’da ekonomik, orta ve lüks segment kiralık araçlar sunan AHMET GÜR KURULUŞUDUR. 7/24 telefon ve WhatsApp ile hızlı rezervasyon.">
+  <meta name="keywords" content="Karaman araç kiralama, Karaman rent a car, Gür Rent A Car, kiralık araba Karaman, ekonomik araç kiralama, Gür oto kiralama">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://gurrentacar.netlify.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GÜR RENT A CAR Karaman | Ekonomik Araç Kiralama">
+  <meta property="og:description" content="Karaman’da güvenli ve ekonomik araç kiralama. Gür Rent A Car ile 7/24 telefon ve WhatsApp üzerinden hızlı rezervasyon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurrentacar.netlify.app/">
+  <meta property="og:image" content="https://gurrentacar.netlify.app/logo-gur-rentacar.jpeg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GÜR RENT A CAR Karaman | Ekonomik Araç Kiralama">
+  <meta name="twitter:description" content="Karaman’da güvenli ve ekonomik araç kiralama. Gür Rent A Car güvencesiyle.">
+  <meta name="twitter:image" content="https://gurrentacar.netlify.app/logo-gur-rentacar.jpeg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="logo-gur-rentacar.jpeg" type="image/jpeg">
+
+  <!-- Poppins: Regular (400), Medium (500), SemiBold (600) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CarRental",
+    "name": "GÜR RENT A CAR",
+    "url": "https://gurrentacar.netlify.app/",
+    "image": "https://gurrentacar.netlify.app/logo-gur-rentacar.jpeg",
+    "description": "Karaman’da ekonomik, orta ve lüks segment kiralık araçlar sunan GÜR RENT A CAR, 2015 yılından beri hizmet veren bir AHMET GÜR KURULUŞUDUR.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Külhan Mh. 2. İstasyon Cd. No:29/E",
+      "addressLocality": "Karaman",
+      "addressRegion": "Karaman",
+      "postalCode": "70000",
+      "addressCountry": "TR"
+    },
+    "telephone": "+90 544 970 9712",
+    "priceRange": "₺₺",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Karaman’da araç kiralama şartları nelerdir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GÜR RENT A CAR’dan araç kiralayabilmek için en az 23 yaşında olmak ve en az 2 yıllık ehliyete sahip olmak gerekir. Ekonomik ve orta grup araçlarda 23 yaş, lüks segmentte 25 yaş ve 5 yıllık ehliyet şartı aranır."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Araç teslimi nereden yapılır?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Araç teslimi yalnızca Karaman Merkez ofisinden yapılmaktadır. Havaalanı ve otogar için servis desteği sunulabilmektedir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "GÜR RENT A CAR’da 7/24 iletişim var mı?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet, GÜR RENT A CAR ile 7 gün 24 saat telefon ve WhatsApp üzerinden iletişime geçebilir, rezervasyon talebi oluşturabilirsiniz."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --dark:#0F0F0F;
+      --dark-alt:#1A1A1A;
+      --gold:#F0C037;
+      --gold-alt:#E8B225;
+      --white:#fff;
+      --bg:#f2f2f2;
+      --text:#222;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      font-family:"Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      line-height:1.6;
+      font-weight:400;
+    }
+    a{color:var(--gold-alt);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    /* LIGHT MODE */
+    body.light-mode{
+      --bg:#ffffff;
+      --dark:#111111;
+      --dark-alt:#222222;
+      --text:#222222;
+    }
+
+    /* PRELOADER */
+    #preloader{
+      position:fixed;
+      inset:0;
+      background:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+    }
+    .preloader-inner{
+      text-align:center;
+      color:#fff;
+    }
+    .preloader-inner img{
+      width:80px;
+      height:auto;
+      margin-bottom:10px;
+    }
+    .spinner{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      border:3px solid rgba(255,255,255,0.3);
+      border-top-color:#F0C037;
+      animation:spin 0.8s linear infinite;
+      margin:0 auto;
+    }
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* DUYURU ŞERİDİ */
+    .top-bar{
+      background:linear-gradient(90deg,#F0C037,#E8B225);
+      color:#111;
+      font-size:12px;
+      padding:6px 12px;
+      text-align:center;
+      font-weight:500;
+      overflow:hidden;
+      white-space:nowrap;
+    }
+    .top-bar .scroll-text{
+      display:inline-block;
+      animation:marquee 18s linear infinite;
+    }
+    @keyframes marquee{
+      0%{transform:translateX(100%);}
+      100%{transform:translateX(-100%);}
+    }
+
+    /* HEADER */
+    header{
+      background:var(--dark);
+      color:#fff;
+      padding:10px 0;
+      position:sticky;
+      top:0;
+      z-index:1100; /* menüden daha yukarıda */
+    }
+    .container{
+      width:100%;
+      max-width:1000px;
+      margin:0 auto;
+      padding:0 16px;
+    }
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .logo img{
+      height:42px;
+      width:auto;
+    }
+
+    .menu-toggle{
+      width:26px;
+      height:20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      cursor:pointer;
+      margin-left:10px;
+    }
+    .menu-toggle span{
+      height:3px;
+      background:#fff;
+      border-radius:2px;
+    }
+
+    .right-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .theme-toggle{
+      border:1px solid rgba(255,255,255,0.5);
+      background:transparent;
+      color:#fff;
+      border-radius:20px;
+      padding:4px 10px;
+      font-size:11px;
+      cursor:pointer;
+    }
+
+    /* MOBILE MENU */
+    .mobile-menu{
+      position:fixed;
+      top:0;
+      right:0;
+      width:240px;
+      height:100vh;
+      background:rgba(26,26,26,0.96);
+      padding:70px 20px;
+      transform:translateX(100%);
+      transition:.3s;
+      z-index:1000; /* header'dan küçük */
+    }
+    .mobile-menu.open{transform:translateX(0);}
+    .mobile-menu a{
+      display:block;
+      padding:10px 0;
+      color:#fff;
+      border-bottom:1px solid rgba(255,255,255,0.12);
+      font-size:15px;
+      font-weight:500;
+      text-transform:uppercase;
+    }
+    .mobile-menu a.active-link{
+      color:#F0C037;
+      border-bottom-color:#F0C037;
+    }
+
+    /* HERO */
+    .hero{
+      background:var(--dark-alt);
+      text-align:center;
+      color:#fff;
+      padding:40px 20px;
+      overflow:hidden;
+    }
+    body.light-mode .hero{background:#222;}
+    .hero h1{
+      color:var(--gold);
+      font-size:2rem;
+      font-weight:600;
+      text-transform:uppercase;
+      line-height:1.3;
+    }
+    .hero-bullets{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px;
+      margin-top:14px;
+    }
+    .hero-bullets span{
+      background:#1f1f1f;
+      color:#fff;
+      padding:8px 14px;
+      border-radius:25px;
+      font-size:14px;
+      font-weight:500;
+    }
+    .hero-slider{
+      position:relative;
+      margin-top:16px;
+      min-height:32px;
+      font-size:14px;
+      color:#f5f5f5;
+    }
+    .hero-slide{
+      position:absolute;
+      left:0;right:0;top:0;
+      opacity:0;
+      transition:opacity .6s ease;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:0 10px;
+    }
+    .hero-slide.active{opacity:1;}
+    .btn-call{
+      display:inline-block;
+      margin-top:22px;
+      padding:12px 26px;
+      background:var(--gold);
+      color:#111;
+      border-radius:30px;
+      font-weight:600;
+      font-size:15px;
+      text-transform:uppercase;
+    }
+    .hero p.hero-sub{
+      margin-top:16px;
+      font-size:13px;
+      opacity:0.9;
+    }
+    .hero-clock{
+      margin-top:8px;
+      font-size:12px;
+      opacity:0.9;
+    }
+    .hero-clock span{
+      font-weight:600;
+      letter-spacing:1px;
+    }
+    .btn-callback{
+      display:inline-block;
+      margin-top:10px;
+      padding:8px 18px;
+      border-radius:30px;
+      border:1px solid #F0C037;
+      background:transparent;
+      color:#F0C037;
+      font-size:12px;
+      font-weight:500;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+
+    section{padding:26px 0;}
+    h2{
+      color:var(--gold);
+      font-size:22px;
+      font-weight:600;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .block{
+      background:#fff;
+      padding:14px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      line-height:1.6;
+      font-size:14px;
+    }
+    body.light-mode .block{background:#ffffff;}
+    .block strong{text-decoration:underline;}
+    .segment-title{
+      font-size:16px;
+      font-weight:600;
+      margin:12px 0 6px;
+      text-transform:uppercase;
+      color:#333;
+    }
+    .info-note{
+      font-size:12px;
+      margin-top:8px;
+      background:#fff8e0;
+      border-radius:6px;
+      padding:8px;
+      border:1px dashed #e0c15f;
+    }
+    .mini-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+      font-size:13px;
+    }
+    .mini-table th,
+    .mini-table td{
+      border:1px solid #ddd;
+      padding:6px 8px;
+      text-align:left;
+    }
+    .mini-table th{
+      background:#f7f7f7;
+      font-weight:600;
+    }
+
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+    }
+    .step-card{
+      background:#fff;
+      border-radius:8px;
+      border:1px solid #ddd;
+      padding:10px;
+      font-size:13px;
+    }
+    .step-number{
+      font-weight:600;
+      margin-bottom:4px;
+      color:#F0C037;
+    }
+
+    .two-columns{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:12px;
+    }
+
+    .cars-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+      gap:14px;
+      margin-bottom:10px;
+    }
+    .car-card{
+      position:relative;
+      background:#fff;
+      padding:12px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      text-align:center;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .car-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 18px rgba(0,0,0,0.18);
+      border-color:var(--gold-alt);
+    }
+    .car-card img{
+      width:100%;
+      max-width:160px;
+      height:auto;
+      display:block;
+      margin:0 auto;
+    }
+    .car-name{
+      margin:8px 0 4px;
+      font-size:15px;
+      font-weight:600;
+      text-transform:uppercase;
+    }
+    .car-tags{
+      font-size:11px;
+      color:#666;
+      margin-bottom:2px;
+    }
+    .car-color{
+      font-size:11px;
+      color:#444;
+      margin-bottom:4px;
+    }
+    .car-color span{font-weight:600;}
+    .car-actions a{
+      display:block;
+      margin-top:8px;
+      padding:7px;
+      background:var(--gold);
+      border-radius:8px;
+      color:#111;
+      font-size:13px;
+      font-weight:600;
+      text-transform:uppercase;
+    }
+    .car-badge{
+      position:absolute;
+      top:8px;
+      left:8px;
+      background:#e53935;
+      color:#fff;
+      font-size:10px;
+      padding:4px 6px;
+      border-radius:3px;
+      font-weight:600;
+      text-transform:uppercase;
+    }
+
+    .wa-quick-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:8px;
+      margin-top:10px;
+    }
+    .wa-quick-grid a{
+      display:block;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--gold-alt);
+      text-align:center;
+      font-size:13px;
+      font-weight:500;
+      background:#fffbe6;
+    }
+
+    .trust-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:10px;
+    }
+    .trust-item{
+      background:#fff;
+      border-radius:8px;
+      border:1px solid #ddd;
+      padding:10px;
+      font-size:13px;
+    }
+    .trust-item strong{display:block;margin-bottom:4px;text-decoration:none;}
+
+    .rating-box{
+      margin-top:12px;
+      padding:8px 10px;
+      border-radius:6px;
+      border:1px solid #f0c037;
+      background:#fffdf0;
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .rating-stars{color:#FFD700;font-size:15px;}
+
+    .testimonial-slider{position:relative;min-height:70px;}
+    .testimonial-slide{
+      position:absolute;
+      left:0;right:0;top:0;
+      opacity:0;
+      transition:opacity .5s ease;
+      font-size:14px;
+    }
+    .testimonial-slide.active{opacity:1;}
+    .testimonial-name{font-weight:600;margin-bottom:2px;}
+
+    .guide-list{padding-left:18px;font-size:13px;}
+
+    footer{
+      background:var(--dark);
+      color:#eee;
+      padding:26px 0 90px;
+      margin-top:10px;
+      font-size:13px;
+      line-height:1.5;
+    }
+    footer .copy{text-align:center;opacity:0.9;}
+    .hashtag-strip{
+      margin-top:10px;
+      font-size:11px;
+      color:#ccc;
+    }
+    .last-updated{
+      margin-top:6px;
+      font-size:11px;
+      color:#bbb;
+    }
+
+    .sitemap-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 16px;
+      font-size:13px;
+    }
+    .sitemap-list a{
+      text-transform:uppercase;
+      font-weight:500;
+    }
+
+    .quick-bar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      background:#111;
+      padding:10px;
+      display:flex;
+      justify-content:space-around;
+      z-index:999;
+    }
+    .quick-bar a{
+      flex:1;
+      text-align:center;
+      margin:0 6px;
+      padding:10px;
+      background:#F0C037;
+      color:#111;
+      border-radius:30px;
+      font-size:14px;
+      font-weight:600;
+      text-transform:uppercase;
+    }
+
+    #backToTop{
+      position:fixed;
+      right:16px;
+      bottom:80px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:#111;
+      color:#fff;
+      font-size:22px;
+      border:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+      cursor:pointer;
+    }
+
+    .icon-anim{
+      display:inline-block;
+      transition:transform .15s ease;
+    }
+    .icon-anim:hover{transform:translateY(-2px);}
+
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1500;
+    }
+    .modal-content{
+      background:#fff;
+      border-radius:10px;
+      padding:14px;
+      width:90%;
+      max-width:360px;
+      border:1px solid #ddd;
+    }
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .modal-header h3{
+      font-size:15px;
+      text-transform:uppercase;
+      color:#333;
+    }
+    .modal-close{
+      border:none;
+      background:transparent;
+      font-size:18px;
+      cursor:pointer;
+    }
+    .modal-content label{font-size:13px;}
+    .modal-content input{
+      width:100%;
+      padding:7px;
+      margin:4px 0 8px;
+      border-radius:6px;
+      border:1px solid #ccc;
+      font-size:13px;
+    }
+    .modal-content button{
+      width:100%;
+      padding:9px;
+      border:none;
+      border-radius:30px;
+      background:#F0C037;
+      color:#111;
+      font-weight:600;
+      font-size:13px;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="preloader-inner">
+    <img src="logo-gur-rentacar.jpeg" alt="Gür Rent A Car Logo">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<div class="top-bar">
+  <span class="scroll-text" id="campaignText"></span>
+</div>
+
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <img loading="lazy" src="logo-gur-rentacar.jpeg" alt="Gür Rent A Car Karaman Logo">
+    </div>
+    <div class="right-controls">
+      <button class="theme-toggle" id="themeToggle">🌙 / ☀</button>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="menu">
+  <a href="#hero" onclick="toggleMenu()">ANA SAYFA</a>
+  <a href="#hakkimizda" onclick="toggleMenu()">HAKKIMIZDA</a>
+  <a href="#nedenbiz" onclick="toggleMenu()">NEDEN BİZ</a>
+  <a href="#adimlar" onclick="toggleMenu()">KİRALAMA SÜRECİ</a>
+  <a href="#araclar" onclick="toggleMenu()">ARAÇLAR</a>
+  <a href="#sss" onclick="toggleMenu()">SSS</a>
+  <a href="#kosul" onclick="toggleMenu()">KOŞUL VE SÖZLEŞME</a>
+  <a href="#form" onclick="toggleMenu()">REZERVASYON TALEP FORMU</a>
+  <a href="#rehber" onclick="toggleMenu()">KARAMAN REHBER</a>
+  <a href="#iletisim" onclick="toggleMenu()">İLETİŞİM</a>
+</nav>
+
+<section class="hero" id="hero">
+  <h1>KARAMAN’DA GÜVENLİ VE EKONOMİK ARAÇ KİRALAMA</h1>
+
+  <div class="hero-bullets">
+    <span>17 ARAÇLIK FİLO</span>
+    <span>7/24 TELEFON &amp; WHATSAPP</span>
+    <span>KARAMAN MERKEZ OFİS TESLİM</span>
+  </div>
+
+  <div class="hero-slider" id="heroSlider"></div>
+
+  <a href="tel:+905449709712" class="btn-call"><span class="icon-anim">📞</span> HEMEN ARA</a>
+  <button type="button" class="btn-callback" onclick="openCallbackModal()">
+    <span class="icon-anim">📲</span> SİZİ BİZ ARAYALIM
+  </button>
+
+  <p class="hero-sub">
+    Araç teslimi yalnızca Karaman Merkez ofisindendir. Rezervasyonlar telefon veya WhatsApp ile yapılır.
+    Detaylı şartlar için <a href="#kosul">KOŞUL VE SÖZLEŞME</a> bölümünü inceleyebilirsiniz.
+  </p>
+  <div class="hero-clock">
+    SİSTEM SAATİ: <span id="liveClock">00:00:00</span>
+  </div>
+</section>
+
+<section id="adimlar">
+  <div class="container">
+    <h2>KİRALAMA SÜRECİ</h2>
+    <div class="block">
+      <p style="font-size:13px;margin-bottom:8px;">
+        GÜR RENT A CAR ile araç kiralama süreci <strong>4 basit adımda</strong> gerçekleşir:
+      </p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1. İLETİŞİME GEÇİN</div>
+          <p>Telefon veya WhatsApp hattımız üzerinden bize ulaşın; tarih ve temel bilgileri paylaşın.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2. ARAÇ VE TARİH SEÇİMİ</div>
+          <p>İhtiyacınıza uygun aracı ve kiralama süresini belirleyelim, <a href="#araclar">ARAÇLARIMIZ</a> bölümünü inceleyin.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3. SÖZLEŞME &amp; TESLİM</div>
+          <p>Ofisimizde sözleşme imzalanır, kimlik ve ehliyet kontrolü sonrasında aracınızı teslim alırsınız.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4. GÜVENLİ SÜRÜŞ &amp; İADE</div>
+          <p>Aracınızı güvenle kullanır, anlaşılmış tarihte Karaman merkez ofisimize iade edersiniz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hakkimizda">
+  <div class="container">
+    <h2>HAKKIMIZDA</h2>
+    <div class="block">
+      GÜR RENT A CAR, 2015 yılında Karaman’da kurulmuş olup ekonomik, orta ve lüks araç filosuyla hizmet vermektedir.
+      Firma, kurucusu Ahmet Gür tarafından kurulmuş bir
+      <u><strong>AHMET GÜR KURULUŞUDUR</strong></u>.
+      Kiralama koşulları için <a href="#sss">SSS</a> ve <a href="#kosul">KOŞUL VE SÖZLEŞME</a> bölümlerini inceleyebilirsiniz.
+    </div>
+  </div>
+</section>
+
+<section id="nedenbiz">
+  <div class="container">
+    <h2>NEDEN BİZ</h2>
+    <div class="block">
+      <ul style="padding-left:18px;">
+        <li>En iyi fiyatlar</li>
+        <li>Hızlı rezervasyon</li>
+        <li>Araç güvenliği</li>
+        <li>Bakımlı araçlar</li>
+        <li>7/24 iletişim</li>
+      </ul>
+
+      <h3 class="segment-title" style="margin-top:16px;">Sık Gelen Sorular – Özet Çizelge</h3>
+      <table class="mini-table">
+        <tr>
+          <th>SEGMENT</th>
+          <th>MİN. YAŞ</th>
+          <th>MİN. EHLİYET SÜRESİ</th>
+          <th>GÜNLÜK KM SINIRI</th>
+        </tr>
+        <tr>
+          <td>Ekonomik</td>
+          <td>23</td>
+          <td>3 Yıl</td>
+          <td>250 KM</td>
+        </tr>
+        <tr>
+          <td>Orta</td>
+          <td>23</td>
+          <td>3 Yıl</td>
+          <td>250 KM</td>
+        </tr>
+        <tr>
+          <td>Lüks</td>
+          <td>25</td>
+          <td>5 Yıl</td>
+          <td>250 KM</td>
+        </tr>
+      </table>
+
+      <div class="rating-box" id="googleRatingBox">
+        <span class="rating-stars">★★★★★</span>
+        <span id="googleRatingText"></span>
+      </div>
+
+      <div class="info-note">
+        Detaylı KM hesaplamaları, genç sürücü koşulları ve mücbir durumlar için mutlaka
+        <strong><a href="#kosul">KOŞUL VE SÖZLEŞME</a></strong> bölümünü okuyunuz veya doğrudan bizimle iletişime geçiniz.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>EK HİZMETLER</h2>
+    <div class="two-columns">
+      <div class="block">
+        <strong>HAVAALANI / OTOGAR SERVİSİ</strong>
+        <p style="margin-top:6px;font-size:13px;" id="havaalaniInfo"></p>
+        <p style="margin-top:6px;font-size:13px;">
+          Detaylı bilgi ve fiyat için lütfen telefon veya WhatsApp üzerinden ulaşınız.
+        </p>
+      </div>
+
+      <div class="block">
+        <strong>KURUMSAL KİRALAMA</strong>
+        <p style="margin-top:6px;font-size:13px;">
+          Şirketler, kamu kurumları ve profesyonel firmalar için aylık veya uzun dönemli filo kiralama çözümleri sunuyoruz.
+        </p>
+        <p style="margin-top:6px;font-size:13px;">
+          Kurumsal teklif ve fatura talepleriniz için iletişim bilgilerinizle birlikte
+          <strong>WhatsApp</strong> üzerinden bize ulaşabilirsiniz.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="araclar">
+  <div class="container">
+    <h2>ARAÇLARIMIZ</h2>
+
+    <h3 class="segment-title">EKONOMİK SEGMENT</h3>
+    <div class="cars-grid" id="carsEkonomik"></div>
+
+    <h3 class="segment-title">ORTA SEGMENT</h3>
+    <div class="cars-grid" id="carsOrta"></div>
+
+    <h3 class="segment-title">LÜKS SEGMENT</h3>
+    <div class="block">
+      Lüks segment araçlarımız dönemsel olarak değişmektedir. Güncel lüks segment araçlarımız ve uzun dönem lüks kiralama
+      fiyatlarımız için lütfen doğrudan <strong>telefon</strong> veya <strong>WhatsApp</strong> üzerinden bilgi isteyiniz.
+    </div>
+  </div>
+</section>
+
+<section id="sss">
+  <div class="container">
+    <h2>SSS</h2>
+    <div class="block">
+      <p><strong>ARAÇ KİRALAMA ŞARTLARI</strong></p>
+      <ul style="padding-left:18px;margin-top:6px;">
+        <li>Araç kiralamak isteyen kişinin yaşı en az 23 olmalı ve en az iki yıllık ehliyet sahibi olmalıdır.</li>
+        <li>Kiracının ev ve iş telefonları ile adresleri tam olmalıdır.</li>
+        <li>Aracı kullanacak kişi sayısı birden fazla ise, sözleşme hazırlanırken bildirilmesi zorunludur.</li>
+        <li>Sözleşmede adı bulunmayanlar aracı kullanamazlar.</li>
+      </ul>
+
+      <br>
+
+      <p><strong>SİGORTA VE KASKO KAPSAMI DIŞINDA KALAN NOKTALAR</strong></p>
+      <ul style="padding-left:18px;margin-top:6px;">
+        <li>Alkollü veya uyuşturucu madde etkisinde araç kullanmak,</li>
+        <li>Belirlenen hız limitini aşmak,</li>
+        <li>Kaza esnasında aracı bulunduğu yerden hareket ettirmek,</li>
+        <li>Gerekli resmi evrakların (kaza tespit, alkol, çalıntı raporu vb.) alınmaması.</li>
+      </ul>
+
+      <div class="info-note">
+        Online rezervasyon ve online ödeme bulunmamaktadır. Ödemeler yalnızca ofiste veya mutabık kalınan yöntemlerle
+        alınır; kredi kartı bilgileriniz <strong>telefonla talep edilmez</strong>. Güvenliğiniz için bu tür taleplere
+        itibar etmeyiniz.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kosul">
+  <div class="container">
+    <h2>KOŞUL VE SÖZLEŞME</h2>
+    <div class="block">
+      <p><strong>ARAÇ KİRALAMA ŞARTLARI ÖZET</strong></p>
+      <ul style="padding-left:18px;margin-top:6px;">
+        <li>Ekonomik ve orta grup araçlar için minimum 23 yaş ve en az 3 yıllık ehliyet.</li>
+        <li>Lüks grup araçlar için 25 yaş ve en az 5 yıllık ehliyet.</li>
+        <li>Günlük kiralamalarda 24 saat, aylık kiralamalarda 30 gün esas alınır.</li>
+        <li>KM sınırları ve kaza hallerine ilişkin tüm detaylar kira sözleşmesinde ayrıca belirtilir.</li>
+      </ul>
+      <p style="margin-top:8px;font-size:13px;">
+        Kiralama sırasında imzaladığınız sözleşme, araç teslim ve iade süreçlerinde hem sizi hem de GÜR RENT A CAR’ı koruyan
+        resmi belgedir. Tüm maddeleri dikkatle okumanız tavsiye edilir.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="form">
+  <div class="container">
+    <h2>REZERVASYON TALEP FORMU</h2>
+    <div class="block">
+      <p style="font-size:13px;margin-bottom:8px;">
+        Bu form, <strong>online rezervasyon talebinizi</strong> toplar ve bilgilerinizi WhatsApp mesajına dönüştürerek
+        GÜR RENT A CAR hattına iletir. Ödeme online alınmaz, yalnızca ön bilgilendirme ve talep formudur.
+      </p>
+      <form id="rezForm">
+        <div style="margin-bottom:8px;">
+          <label>Ad Soyad</label>
+          <input type="text" id="adsoyad" required style="width:100%;padding:7px;border-radius:6px;border:1px solid #ccc;">
+        </div>
+        <div style="margin-bottom:8px;">
+          <label>Telefon</label>
+          <input type="tel" id="telefon" required style="width:100%;padding:7px;border-radius:6px;border:1px solid #ccc;">
+        </div>
+        <div style="margin-bottom:8px;">
+          <label>Tercih Ettiğiniz Araç</label>
+          <select id="arac" style="width:100%;padding:7px;border-radius:6px;border:1px solid #ccc;">
+            <option>Hyundai Accent Blue</option>
+            <option>Ford Fiesta</option>
+            <option>Peugeot 301</option>
+            <option>Citroen C-Elysée</option>
+            <option>Fiat Egea</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:8px;">
+          <div style="flex:1;">
+            <label>Alış Tarihi</label>
+            <input type="date" id="alis" style="width:100%;padding:7px;border-radius:6px;border:1px solid #ccc;">
+          </div>
+          <div style="flex:1;">
+            <label>Teslim Tarihi</label>
+            <input type="date" id="teslim" style="width:100%;padding:7px;border-radius:6px;border:1px solid #ccc;">
+          </div>
+        </div>
+        <div style="margin-bottom:8px;">
+          <label>Not / Özel İstek</label>
+          <textarea id="not" rows="3" style="width:100%;padding:7px;border-radius:6px;border:1px solid #ccc;"></textarea>
+        </div>
+        <button type="submit" style="width:100%;padding:10px;border:none;border-radius:30px;background:#F0C037;color:#111;font-weight:600;text-transform:uppercase;">
+          WHATSAPP İLE GÖNDER
+        </button>
+      </form>
+
+      <div class="info-note">
+        KVKK kapsamında, bu formda paylaştığınız kişisel verileriniz yalnızca rezervasyon talebinizin değerlendirilmesi ve
+        size geri dönüş sağlanması amacıyla kullanılacak, üçüncü kişilerle izniniz olmadan paylaşılmayacaktır.
+      </div>
+
+      <h3 class="segment-title" style="margin-top:18px;">HAZIR WHATSAPP MESAJLARI</h3>
+      <p style="font-size:12px;margin-bottom:4px;">
+        İsterseniz aşağıdaki hazır mesajlardan birini seçerek WhatsApp üzerinden hızlıca bize yazabilirsiniz:
+      </p>
+      <div class="wa-quick-grid" id="waQuick"></div>
+    </div>
+  </div>
+</section>
+
+<section id="rehber">
+  <div class="container">
+    <h2>KARAMAN’A YENİ GELENLER İÇİN REHBER</h2>
+    <div class="block">
+      <p style="font-size:13px;margin-bottom:6px;">
+        Karaman’a ilk kez geliyorsanız, <strong>havalimanı veya otogardan</strong> şehre ulaşım ve şehir içi hareketlilik
+        için araç kiralamak büyük kolaylık sağlar. GÜR RENT A CAR olarak;
+      </p>
+      <ul class="guide-list">
+        <li>Şehir merkezindeki otellere rahat ulaşım,</li>
+        <li>Üniversite, hastane ve sanayi bölgelerine pratik erişim,</li>
+        <li>Ailece seyahat edenler için bagaj ve konfor avantajı,</li>
+        <li>Şehir içi ve çevre il/ilçelere günübirlik seyahat imkanı sunuyoruz.</li>
+      </ul>
+      <p style="font-size:13px;margin-top:6px;">
+        Kiralama koşulları için <a href="#sss">SSS</a> ve <a href="#kosul">KOŞUL VE SÖZLEŞME</a> bölümlerini,
+        araç seçenekleri için <a href="#araclar">ARAÇLARIMIZ</a> kısmını inceleyebilirsiniz.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="iletisim">
+  <div class="container">
+    <h2>İLETİŞİM VE REZERVASYON</h2>
+    <div class="block">
+      <p><strong>Adres:</strong> Külhan Mh. 2. İstasyon Cd. No:29/E Merkez / Karaman</p>
+      <p><strong>Telefon:</strong>
+        <a href="tel:+905449709712" class="icon-anim">📞 0 544 970 97 12</a> –
+        <a href="tel:+905412427267" class="icon-anim">📞 0 541 242 72 67</a>
+      </p>
+      <p><strong>WhatsApp:</strong>
+        <a href="https://wa.me/905449709712" class="icon-anim">💬 0 544 970 97 12</a>
+      </p>
+      <p><strong>Instagram:</strong>
+        <a href="https://instagram.com/gurrentacar" target="_blank" class="icon-anim">📸 @gurrentacar</a>
+      </p>
+      <div style="margin-top:10px;">
+        <iframe
+          loading="lazy"
+          src="https://www.google.com/maps?q=K%C3%BClhan%20Mah.%202.%20%C4%B0stasyon%20Cd.%20No:29/E%20Merkez%20Karaman&output=embed"
+          width="100%" height="220" style="border:1px solid #ddd;border-radius:8px;"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>GÜVEN ROZETLERİ</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <strong>🛠 BAKIMLI ARAÇLAR</strong>
+        Tüm araçlarımız periyodik bakımları yapılmış, muayeneleri tamamlanmış ve kullanıma hazır durumdadır.
+      </div>
+      <div class="trust-item">
+        <strong>📞 7/24 İLETİŞİM</strong>
+        Günün her saati telefon ve WhatsApp üzerinden bize ulaşabilir, bilgi ve rezervasyon talebinde bulunabilirsiniz.
+      </div>
+      <div class="trust-item">
+        <strong>🏢 KURUMSAL GÜVENCE</strong>
+        GÜR RENT A CAR, Karaman’da 2015 yılından beri hizmet veren bir AHMET GÜR KURULUŞUDUR.
+      </div>
+      <div class="trust-item">
+        <strong>⚡ HIZLI TESLİM</strong>
+        Önceden planlanmış rezervasyonlarda aracınızı mümkün olan en hızlı şekilde teslim almanızı hedefliyoruz.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>MÜŞTERİ YORUMLARI</h2>
+    <div class="block">
+      <div class="testimonial-slider" id="testimonialSlider"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>HIZLI MENÜ</h2>
+    <div class="block">
+      <div class="sitemap-list">
+        <a href="#hero">ANA SAYFA</a>
+        <a href="#hakkimizda">HAKKIMIZDA</a>
+        <a href="#nedenbiz">NEDEN BİZ</a>
+        <a href="#adimlar">KİRALAMA SÜRECİ</a>
+        <a href="#araclar">ARAÇLARIMIZ</a>
+        <a href="#sss">SSS</a>
+        <a href="#kosul">KOŞUL VE SÖZLEŞME</a>
+        <a href="#form">REZERVASYON TALEP FORMU</a>
+        <a href="#rehber">KARAMAN REHBER</a>
+        <a href="#iletisim">İLETİŞİM</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="copy">
+      <p>
+        GÜR RENT A CAR, 2015 yılından beri Karaman’da hizmet veren bir
+        <u><strong>AHMET GÜR KURULUŞUDUR</strong></u>.
+      </p>
+      <p style="margin-top:8px;">
+        Copyright © 2024 Her Hakkı Saklıdır, kopyalanması, çoğaltılması ve dağıtılması halinde yasal haklarımız işletilecektir.
+      </p>
+      <p style="margin-top:4px;">
+        Reklam ve Tasarım: @huseyinelaldi7
+      </p>
+
+      <div class="hashtag-strip" id="hashtagsStrip"></div>
+      <div class="last-updated" id="lastUpdatedText"></div>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button>
+
+<div class="quick-bar">
+  <a href="tel:+905449709712"><span class="icon-anim">📞</span> HEMEN ARA</a>
+  <a href="https://wa.me/905449709712?text=Merhaba%2C%20ara%C3%A7%20kiralamak%20istiyorum."><span class="icon-anim">💬</span> WHATSAPP</a>
+</div>
+
+<div class="modal-backdrop" id="callbackModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>SİZİ BİZ ARAYALIM</h3>
+      <button class="modal-close" type="button" onclick="closeCallbackModal()">×</button>
+    </div>
+    <form id="callbackForm">
+      <label>Ad Soyad</label>
+      <input type="text" id="cbName" required>
+      <label>Telefon</label>
+      <input type="tel" id="cbPhone" required>
+      <button type="submit">TALEP GÖNDER</button>
+    </form>
+    <p style="font-size:11px;margin-top:6px;">
+      Bilgileriniz sadece sizi geri aramak için kullanılacaktır.
+    </p>
+  </div>
+</div>
+
+<script>
+/* --- AYARLAR: BURAYI ADMIN PANELDEN GÜNCELLEYECEKSİN --- */
+const SITE_CONFIG = {
+  campaignText: "En az 3 gün kiralamalarda özel indirim için lütfen telefon veya WhatsApp ile bilgi alınız.",
+  googleRating: "4.9",
+  googleRatingCount: 27,
+  lastUpdated: "Sayfa son güncellenme tarihi: 28.11.2025",
+  havaalaniTransferInfo: "Şehir dışı ve yurt dışından gelen misafirlerimiz için Konya Havaalanı ve otogar gibi noktalardan Karaman’a ekstra ücret karşılığında transfer ve araç teslim hizmeti sunulabilmektedir.",
+  heroMessages: [
+    "Ekonomik, orta ve lüks segment araç seçenekleri.",
+    "Şehir dışı ve yurt dışından gelen misafirler için ideal ulaşım çözümleri.",
+    "Havaalanı ve otogar için servis imkanı, 7/24 iletişim desteği."
+  ],
+  cars: [
+    {
+      name: "Hyundai Accent Blue",
+      segment: "Ekonomik",
+      image: "accent-blue.png",
+      popular: true,
+      colors: "Beyaz / Gri",
+      waText: "Merhaba, Hyundai Accent Blue (Ekonomik Segment) için FİYAT / BİLGİ isteği göndermek istiyorum."
+    },
+    {
+      name: "Ford Fiesta",
+      segment: "Ekonomik",
+      image: "fiesta.png",
+      popular: false,
+      colors: "Beyaz / Lacivert",
+      waText: "Merhaba, Ford Fiesta (Ekonomik Segment) için FİYAT / BİLGİ isteği göndermek istiyorum."
+    },
+    {
+      name: "Peugeot 301",
+      segment: "Orta",
+      image: "peugeot-301.png",
+      popular: false,
+      colors: "Beyaz / Gri",
+      waText: "Merhaba, Peugeot 301 (Orta Segment) için FİYAT / BİLGİ isteği göndermek istiyorum."
+    },
+    {
+      name: "Citroen C-Elysée",
+      segment: "Orta",
+      image: "citroen-c-elysee.png",
+      popular: true,
+      colors: "Beyaz / Gri",
+      waText: "Merhaba, Citroen C-Elysée (Orta Segment) için FİYAT / BİLGİ isteği göndermek istiyorum."
+    },
+    {
+      name: "Fiat Egea",
+      segment: "Orta",
+      image: "fiat-egea.png",
+      popular: true,
+      colors: "Beyaz / Gri / Siyah",
+      waText: "Merhaba, Fiat Egea (Orta Segment) için FİYAT / BİLGİ isteği göndermek istiyorum."
+    }
+  ],
+  whatsappQuickMessages: [
+    {
+      label: "GÜNLÜK FİYAT SOR",
+      text: "Merhaba, güncel günlük araç kiralama fiyatlarınızı öğrenmek istiyorum."
+    },
+    {
+      label: "AYLIK / UZUN DÖNEM BİLGİ",
+      text: "Merhaba, aylık veya uzun dönem araç kiralama için bilgi almak istiyorum."
+    },
+    {
+      label: "HAVAALANI / OTOGAR TRANSFER",
+      text: "Merhaba, havaalanı veya otogardan Karaman’a transfer ve araç teslim için fiyat bilgisi almak istiyorum."
+    }
+  ],
+  testimonials: [
+    { name: "Fatih P.", text: "Tıkır tıkır işleyen sistemleri var, tavsiye ederim." },
+    { name: "Salih K.", text: "Aldığımız araç çok yeni ve temizdi." },
+    { name: "Melike A.", text: "Firma ilgili, biz memnun kaldık." },
+    { name: "Rahmi B.", text: "Her şey güzel." }
+  ],
+  hashtags: [
+    "#gurrentacar",
+    "#karamanarackiralama",
+    "#karamanrentacar",
+    "#arackiralama",
+    "#konyaarackiralama",
+    "#ahmetgür"
+  ]
+};
+
+/* --- FORM OLAYLARI --- */
+var f = document.getElementById('rezForm');
+if(f){
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ad = document.getElementById('adsoyad').value.trim();
+    var tel = document.getElementById('telefon').value.trim();
+    var arac = document.getElementById('arac').value;
+    var alis = document.getElementById('alis').value;
+    var teslim = document.getElementById('teslim').value;
+    var not = document.getElementById('not').value.trim();
+
+    var msg = "Merhaba, online rezervasyon talebim var.%0A";
+    msg += "Ad Soyad: " + ad + "%0A";
+    msg += "Telefon: " + tel + "%0A";
+    msg += "Araç: " + arac + "%0A";
+    if(alis) msg += "Alış Tarihi: " + alis + "%0A";
+    if(teslim) msg += "Teslim Tarihi: " + teslim + "%0A";
+    if(not) msg += "Not: " + not + "%0A";
+
+    var url = "https://wa.me/905449709712?text=" + msg;
+    window.location.href = url;
+  });
+}
+
+function openCallbackModal(){
+  document.getElementById('callbackModal').style.display = 'flex';
+}
+function closeCallbackModal(){
+  document.getElementById('callbackModal').style.display = 'none';
+}
+document.getElementById('callbackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = document.getElementById('cbName').value.trim();
+  var phone = document.getElementById('cbPhone').value.trim();
+  var msg = "Merhaba, 'Sizi Biz Arayalım' formunu doldurdum.%0A";
+  msg += "Ad Soyad: " + name + "%0A";
+  msg += "Telefon: " + phone + "%0A";
+  msg += "Müsait Olduğum Saatler: ";
+  var url = "https://wa.me/905449709712?text=" + msg;
+  window.location.href = url;
+});
+
+function toggleMenu(){
+  var m = document.getElementById('menu');
+  if(m.classList.contains('open')) m.classList.remove('open');
+  else m.classList.add('open');
+}
+
+document.getElementById('themeToggle').addEventListener('click', function(){
+  document.body.classList.toggle('light-mode');
+});
+
+(function(){
+  function pad(n){return n<10 ? "0"+n : n;}
+  function updateClock(){
+    var d = new Date();
+    var h = pad(d.getHours());
+    var m = pad(d.getMinutes());
+    var s = pad(d.getSeconds());
+    var el = document.getElementById('liveClock');
+    if(el) el.textContent = h + ":" + m + ":" + s;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+})();
+
+window.addEventListener('load', function(){
+  var p = document.getElementById('preloader');
+  if(p) p.style.display = 'none';
+});
+
+(function(){
+  var sections = document.querySelectorAll("section[id]");
+  var menuLinks = document.querySelectorAll(".mobile-menu a");
+  function onScroll(){
+    var scrollPos = window.scrollY || window.pageYOffset;
+    var currentId = null;
+    sections.forEach(function(sec){
+      var rect = sec.getBoundingClientRect();
+      var top = rect.top + window.scrollY - 120;
+      var bottom = top + sec.offsetHeight;
+      if(scrollPos >= top && scrollPos < bottom){
+        currentId = sec.id;
+      }
+    });
+    menuLinks.forEach(function(link){
+      link.classList.remove("active-link");
+      var href = link.getAttribute("href");
+      if(currentId && href === "#" + currentId){
+        link.classList.add("active-link");
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+
+/* --- CONFIG'E BAĞLI KISIMLAR --- */
+function initHeroSlider(){
+  var container = document.getElementById('heroSlider');
+  if(!container || !SITE_CONFIG.heroMessages) return;
+  container.innerHTML = "";
+  SITE_CONFIG.heroMessages.forEach(function(text, idx){
+    var div = document.createElement('div');
+    div.className = 'hero-slide' + (idx === 0 ? ' active' : '');
+    div.textContent = text;
+    container.appendChild(div);
+  });
+  var slides = container.querySelectorAll('.hero-slide');
+  if(!slides.length) return;
+  var index = 0;
+  setInterval(function(){
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 4000);
+}
+
+function initCars(){
+  if(!SITE_CONFIG.cars) return;
+  var ekonomikEl = document.getElementById('carsEkonomik');
+  var ortaEl = document.getElementById('carsOrta');
+  if(ekonomikEl) ekonomikEl.innerHTML = "";
+  if(ortaEl) ortaEl.innerHTML = "";
+
+  function createCarCard(car){
+    var card = document.createElement('div');
+    card.className = 'car-card';
+
+    if(car.popular){
+      var badge = document.createElement('div');
+      badge.className = 'car-badge';
+      badge.textContent = 'ÇOK TERCİH EDİLEN';
+      card.appendChild(badge);
+    }
+
+    var img = document.createElement('img');
+    img.loading = "lazy";
+    img.src = car.image;
+    img.alt = "Karaman kiralık " + car.name;
+    card.appendChild(img);
+
+    var name = document.createElement('div');
+    name.className = 'car-name';
+    name.textContent = car.name.toUpperCase();
+    card.appendChild(name);
+
+    var tags = document.createElement('div');
+    tags.className = 'car-tags';
+    tags.textContent = "❄ Klima • 📶 Bluetooth • 🧳 Geniş Bagaj";
+    card.appendChild(tags);
+
+    var color = document.createElement('div');
+    color.className = 'car-color';
+    color.innerHTML = "<span>RENK SEÇENEKLERİ:</span> " + (car.colors || "Bilgi için sorunuz");
+    card.appendChild(color);
+
+    var actions = document.createElement('div');
+    actions.className = 'car-actions';
+    var link = document.createElement('a');
+    var enc = encodeURIComponent(car.waText || "");
+    link.href = "https://wa.me/905449709712?text=" + enc;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "FİYAT / BİLGİ İSTE";
+    actions.appendChild(link);
+    card.appendChild(actions);
+
+    return card;
+  }
+
+  SITE_CONFIG.cars.forEach(function(car){
+    if(car.segment === "Ekonomik" && ekonomikEl){
+      ekonomikEl.appendChild(createCarCard(car));
+    }
+    if(car.segment === "Orta" && ortaEl){
+      ortaEl.appendChild(createCarCard(car));
+    }
+  });
+}
+
+function initWhatsappQuick(){
+  if(!SITE_CONFIG.whatsappQuickMessages) return;
+  var wrap = document.getElementById('waQuick');
+  if(!wrap) return;
+  wrap.innerHTML = "";
+  SITE_CONFIG.whatsappQuickMessages.forEach(function(item){
+    var a = document.createElement('a');
+    a.textContent = item.label;
+    var enc = encodeURIComponent(item.text || "");
+    a.href = "https://wa.me/905449709712?text=" + enc;
+    a.target = "_blank";
+    a.rel = "noopener";
+    wrap.appendChild(a);
+  });
+}
+
+function initTestimonials(){
+  if(!SITE_CONFIG.testimonials) return;
+  var wrap = document.getElementById('testimonialSlider');
+  if(!wrap) return;
+  wrap.innerHTML = "";
+  SITE_CONFIG.testimonials.forEach(function(t, idx){
+    var div = document.createElement('div');
+    div.className = 'testimonial-slide' + (idx === 0 ? ' active' : '');
+    var name = document.createElement('div');
+    name.className = 'testimonial-name';
+    name.textContent = t.name;
+    var text = document.createElement('div');
+    text.textContent = t.text;
+    div.appendChild(name);
+    div.appendChild(text);
+    wrap.appendChild(div);
+  });
+  var slides = wrap.querySelectorAll('.testimonial-slide');
+  if(!slides.length) return;
+  var index = 0;
+  setInterval(function(){
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 5000);
+}
+
+function applyConfigTexts(){
+  var camp = document.getElementById('campaignText');
+  if(camp) camp.textContent = SITE_CONFIG.campaignText || "";
+
+  var ratingText = document.getElementById('googleRatingText');
+  if(ratingText){
+    ratingText.textContent =
+      "Google kullanıcı puanı: " + (SITE_CONFIG.googleRating || "5.0") +
+      " / 5 (" + (SITE_CONFIG.googleRatingCount || 0) + "+ yorum - örnek)";
+  }
+
+  var last = document.getElementById('lastUpdatedText');
+  if(last) last.textContent = SITE_CONFIG.lastUpdated || "";
+
+  var hava = document.getElementById('havaalaniInfo');
+  if(hava) hava.textContent = SITE_CONFIG.havaalaniTransferInfo || "";
+
+  var hashEl = document.getElementById('hashtagsStrip');
+  if(hashEl && SITE_CONFIG.hashtags){
+    hashEl.textContent = SITE_CONFIG.hashtags.join(" ");
+  }
+}
+
+function initSiteFromConfig(){
+  initHeroSlider();
+  initCars();
+  initWhatsappQuick();
+  initTestimonials();
+  applyConfigTexts();
+}
+
+document.addEventListener('DOMContentLoaded', initSiteFromConfig);
+</script>
+
+</body>
+</html>
