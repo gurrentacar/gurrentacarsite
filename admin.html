@@ -60,6 +60,7 @@
       justify-content:center;
       font-size:0.65rem;
       letter-spacing:0.12em;
+      font-weight:600;
     }
     .brand-text{
       font-size:0.85rem;
@@ -262,7 +263,7 @@
         <div class="brand-text">GÜR RENT A CAR • ADMIN</div>
       </div>
       <div>
-        <small>Yeni içerik üret, BÖLÜM KODU OLUŞTUR ve index.html içine yapıştır veya tek tıkla YENİ index.html indir.</small>
+        <small>Yeni içerik üret, BÖLÜM KODU OLUŞTUR veya index.html / site-config.js indirerek güncelle.</small>
       </div>
     </header>
 
@@ -271,7 +272,7 @@
         <div class="card-header">
           <div>
             <h2>İÇERİK AYARLARI</h2>
-            <small>Ana başlık, slogan, kampanya bandı, telefon & WhatsApp.</small>
+            <small>Ana başlık, slogan, telefon & WhatsApp, kampanya ve alt metin.</small>
           </div>
         </div>
         <div class="field">
@@ -294,7 +295,7 @@
         </div>
         <div class="field">
           <label>KAMPANYA / DUYURU ŞERİDİ</label>
-          <textarea id="campaign">En az 3 gün kiralamalarda özel fiyatlar için lütfen telefon veya WhatsApp ile iletişime geçiniz.</textarea>
+          <textarea id="campaign">SADECE ARAMA YAPARAK VEYA WHATSAPP ÜZERİNDEN REZERVASYON VE BİLGİ ALINABİLİR. ONLINE REZERVASYON BULUNMAMAKTADIR.</textarea>
         </div>
         <div class="field">
           <label>ALT BİLGİ (COPYRIGHT METNİ)</label>
@@ -308,8 +309,7 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
           <button class="btn btn-danger btn-sm" id="clearBtn">TÜM ALANLARI SIFIRLA</button>
         </div>
         <p class="note">
-          NOT: Bu panel, sadece statik dosya üretir. Oluşturulan BÖLÜM KODU'NU index.html dosyanızda uygun yere yapıştırabilir
-          veya TAM index.html indirip projeye koyabilirsiniz.
+          NOT: Bu panel, sadece statik dosya üretir. Oluşturulan kodu projendeki dosyalarla değiştirerek yeni ayarlarını yayına alırsın.
         </p>
       </section>
 
@@ -317,21 +317,21 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
         <div class="card-header">
           <div>
             <h2>ÇIKTI / ÖNİZLEME</h2>
-            <small>Oluşan HTML veya script kodu.</small>
+            <small>Oluşan HTML veya script kodunu buradan kopyalayabilirsin.</small>
           </div>
         </div>
         <textarea id="output" spellcheck="false"></textarea>
         <p class="note">
-          BÖLÜM KODU OLUŞTUR: Sadece hero bölümü ve iletişim butonlarının HTML kodunu üretir.<br>
-          YENİ index.html OLUŞTUR: Tam bir index.html dosyasını indirmenizi sağlar.<br>
-          site-config.js OLUŞTUR: Basit bir SITE_CONFIG nesnesi oluşturur.
+          BÖLÜM KODU OLUŞTUR → Sadece HERO bölümünün HTML kodunu üretir.<br>
+          YENİ index.html OLUŞTUR → Basit bir index.html dosyası indirir (test için).<br>
+          site-config.js OLUŞTUR → SITE_CONFIG nesnesini üretir (index.html bunu kullanabilir).
         </p>
       </section>
     </div>
   </div>
 
   <script>
-    // Basit login: admin / gur2025
+    // LOGIN (admin / gur2025)
     const LOGIN_USER = "admin";
     const LOGIN_PASS = "gur2025";
 
@@ -354,7 +354,6 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
     loginBtn.addEventListener("click", doLogin);
     loginPass.addEventListener("keydown", e => { if(e.key === "Enter") doLogin(); });
 
-    // Yardımcı: indirme fonksiyonu
     function downloadFile(filename, content){
       const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
       const url = URL.createObjectURL(blob);
@@ -369,7 +368,6 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
 
     const outEl = document.getElementById("output");
 
-    // BÖLÜM KODU OLUŞTUR
     document.getElementById("genSnippetBtn").addEventListener("click", () => {
       const heroTitle = document.getElementById("heroTitle").value.trim();
       const heroSub   = document.getElementById("heroSub").value.trim();
@@ -416,7 +414,6 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
       outEl.value = snippet;
     });
 
-    // site-config.js oluştur
     document.getElementById("genConfigBtn").addEventListener("click", () => {
       const heroTitle = document.getElementById("heroTitle").value.trim();
       const heroSub   = document.getElementById("heroSub").value.trim();
@@ -439,7 +436,6 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
       downloadFile("site-config.js", js);
     });
 
-    // index.html üret (mini şablon)
     document.getElementById("genIndexBtn").addEventListener("click", () => {
       const heroTitle = document.getElementById("heroTitle").value.trim();
       const heroSub   = document.getElementById("heroSub").value.trim();
@@ -471,7 +467,6 @@ Reklam ve Tasarım: @huseyinelaldi7</textarea>
       downloadFile("index.html", minimal);
     });
 
-    // Temizle
     document.getElementById("clearBtn").addEventListener("click", () => {
       document.getElementById("heroTitle").value = "";
       document.getElementById("heroSub").value   = "";
