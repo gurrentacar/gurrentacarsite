@@ -2,2505 +2,485 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>GÜR RENT A CAR • Ultra Admin Panel</title>
+  <title>GÜR RENT A CAR • ADMIN PANEL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-
   <style>
-    :root {
-      --bg-body: #050505;
-      --bg-shell: #050505;
-      --bg-sidebar: #050505;
-      --bg-main: #0f0f0f;
-      --bg-card: #141414;
-      --bg-soft: #1f1f1f;
-      --accent: #f0c037;
-      --accent-soft: #e8b225;
-      --text: #ffffff;
-      --muted: #999999;
-      --border: #262626;
-      --danger: #ff4d4f;
-      --green: #19c37d;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 999px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1b1b1b 0, #000 55%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .shell {
-      width: 100%;
-      max-width: 1240px;
-      display: grid;
-      grid-template-columns: 230px minmax(0, 1fr);
-      gap: 12px;
-      background: rgba(0, 0, 0, 0.85);
-      border-radius: 26px;
-      border: 1px solid #222;
-      overflow: hidden;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(16px);
-    }
-
-    /* SIDEBAR */
-
-    .sidebar {
-      background: var(--bg-sidebar);
-      padding: 16px 14px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      border-right: 1px solid var(--border);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: radial-gradient(circle at 20% 0, #fff 0, #333 40%, #000 75%);
-      border: 1px solid #444;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-text span:first-child {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .brand-text span:last-child {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .sidebar-section-title {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .nav-item {
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      border: 1px solid transparent;
-      color: var(--muted);
-      transition: background 0.12s, color 0.12s, border 0.12s, transform 0.08s;
-    }
-
-    .nav-item span.label {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .nav-item span.icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      border: 1px solid #333;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-    }
-
-    .nav-item small {
-      font-size: 10px;
-      color: #666;
-    }
-
-    .nav-item:hover {
-      background: #151515;
-      border-color: #333;
-      transform: translateY(-1px);
-    }
-
-    .nav-item.active {
-      background: radial-gradient(circle at top left, #494031 0, #151009 45%, #050505 100%);
-      border-color: #7a5a17;
-      color: #fff;
-    }
-
-    .sidebar-footer {
-      margin-top: auto;
-      border-top: 1px solid #282828;
-      padding-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .status-pill {
-      border-radius: 999px;
-      padding: 5px 8px;
-      background: #101010;
-      border: 1px solid #333;
-      font-size: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
-    }
-
-    .status-pill span.dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 0 4px rgba(25, 195, 125, 0.25);
-    }
-
-    .status-pill strong {
-      color: #fff;
-    }
-
-    .status-meta {
-      font-size: 10px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    .status-meta code {
-      font-size: 10px;
-      background: #111;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid #333;
-      color: var(--accent);
-    }
-
-    /* MAIN */
-
-    .main {
-      background: var(--bg-main);
-      padding: 14px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 4px;
-      flex-wrap: wrap;
-    }
-
-    .topbar-left h1 {
-      font-size: 15px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .topbar-left small {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .chip {
-      font-size: 10px;
-      border-radius: 999px;
-      padding: 4px 10px;
-      background: #111;
-      border: 1px solid #333;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .chip span.dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .btn {
-      border: none;
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-family: inherit;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: transform 0.08s, box-shadow 0.08s, background 0.1s, border 0.1s;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent) 0, var(--accent-soft) 100%);
-      color: #111;
-      box-shadow: 0 12px 25px rgba(240, 192, 55, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 32px rgba(240, 192, 55, 0.5);
-    }
-
-    .btn-secondary {
-      background: #151515;
-      border: 1px solid #333;
-      color: #fff;
-    }
-
-    .btn-secondary:hover {
-      background: #1d1d1d;
-    }
-
-    .btn-danger {
-      background: #2a1515;
-      border: 1px solid #823232;
-      color: #ffdede;
-    }
-
-    .btn-danger:hover {
-      background: #3a1818;
-    }
-
-    .btn-xs {
-      padding: 4px 8px;
-      font-size: 10px;
-    }
-
-    .content {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .col {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 12px 12px 11px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .card-header h2 {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .card-header small {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .card-body {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .field-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    label {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="password"],
-    textarea,
-    select {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid #333;
-      background: #111;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 12px;
-      padding: 7px 9px;
-      outline: none;
-      transition: border 0.1s, box-shadow 0.1s, background 0.1s;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(240, 192, 55, 0.4);
-      background: #090909;
-    }
-
-    textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 3px 9px;
-      font-size: 10px;
-      background: #111;
-      border: 1px solid #333;
-      color: var(--muted);
-    }
-
-    .pill-strong {
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    .pill-small {
-      font-size: 9px;
-      opacity: 0.8;
-    }
-
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11px;
-      margin-top: 4px;
-    }
-
-    .table th,
-    .table td {
-      padding: 4px 6px;
-      border-bottom: 1px solid #262626;
-      text-align: left;
-    }
-
-    .table th {
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .badge {
-      border-radius: 999px;
-      padding: 2px 7px;
-      font-size: 9px;
-      background: #151515;
-      border: 1px solid #333;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .badge.green {
-      border-color: #2f8f5a;
-      color: #8af3b3;
-      background: #082212;
-    }
-
-    .badge.red {
-      border-color: #8f2f2f;
-      color: #ffb3b3;
-      background: #2a1010;
-    }
-
-    .badge.yellow {
-      border-color: #7a5a17;
-      color: #f0c037;
-      background: #241909;
-    }
-
-    .log-list {
-      max-height: 160px;
-      overflow-y: auto;
-      border-radius: 12px;
-      border: 1px solid #222;
-      background: #050505;
-      padding: 6px 7px;
-      font-size: 10px;
-      line-height: 1.4;
-    }
-
-    .log-entry + .log-entry {
-      border-top: 1px dashed #262626;
-      margin-top: 4px;
-      padding-top: 4px;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .mt-4 {
-      margin-top: 4px;
-    }
-
-    .mt-6 {
-      margin-top: 6px;
-    }
-
-    .align-right {
-      display: flex;
-      justify-content: flex-end;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 6px;
-    }
-
-    .tab-btn {
-      border-radius: 999px;
-      padding: 4px 10px;
-      border: 1px solid #333;
-      background: #111;
-      font-size: 10px;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    .tab-btn.active {
-      border-color: var(--accent);
-      color: #fff;
-      background: #18130b;
-    }
-
-    .tab-panel {
-      display: none;
-    }
-
-    .tab-panel.active {
-      display: block;
-    }
-
-    /* LOGIN OVERLAY */
-
-    .login-overlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(40, 40, 40, 0.9), rgba(0, 0, 0, 0.98));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 360px;
-      background: #050505;
-      border-radius: 22px;
-      border: 1px solid #333;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-      padding: 18px 18px 16px;
-    }
-
-    .login-card h1 {
-      font-size: 16px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .login-card p {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .login-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      font-size: 10px;
-      color: var(--muted);
-    }
-
-    .login-meta code {
-      background: #111;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid #333;
-      color: var(--accent);
-    }
-
-    .login-footer {
-      margin-top: 10px;
-      font-size: 10px;
-      color: var(--muted);
-    }
-
-    .login-footer strong {
-      color: #fff;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 900px) {
-      .shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .sidebar {
-        display: none;
-      }
-      .shell.sidebar-open .sidebar {
-        display: flex;
-        position: absolute;
-        inset: 10px 10px auto 10px;
-        z-index: 50;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
-      }
-      .content {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    :root{
+      --bg:#050505;
+      --card:#101010;
+      --accent:#F0C037;
+      --accent-soft:#E8B225;
+      --border:#272727;
+      --text:#FFFFFF;
+      --muted:#A0A0A0;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      min-height:100vh;
+      font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top,#1c1c1c 0,#000 60%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1.5rem;
+    }
+    .shell{
+      width:100%;
+      max-width:1100px;
+      background:rgba(0,0,0,0.9);
+      border-radius:22px;
+      border:1px solid #222;
+      box-shadow:0 24px 70px rgba(0,0,0,0.9);
+      padding:1.2rem 1.4rem;
+    }
+    .shell-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      margin-bottom:1rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:0.75rem;
+    }
+    .brand-logo{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      background:radial-gradient(circle at 20% 0,#fff,#444 45%,#000 100%);
+      border:1px solid #555;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.65rem;
+      letter-spacing:0.12em;
+    }
+    .brand-text{
+      font-size:0.85rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+    }
+    .shell-header small{
+      font-size:0.7rem;
+      color:var(--muted);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(0,1.1fr);
+      gap:0.9rem;
+    }
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:0.9rem;
+    }
+    .card-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:0.5rem;
+      margin-bottom:0.6rem;
+    }
+    .card-header h2{
+      font-size:0.8rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+    }
+    .card-header small{
+      font-size:0.7rem;
+      color:var(--muted);
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:0.2rem;
+      margin-bottom:0.5rem;
+    }
+    .field label{
+      font-size:0.7rem;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .field input,.field textarea{
+      background:#050505;
+      border-radius:10px;
+      border:1px solid #262626;
+      padding:0.45rem 0.55rem;
+      color:var(--text);
+      font-family:inherit;
+      font-size:0.78rem;
+      outline:none;
+    }
+    .field textarea{min-height:80px;resize:vertical;}
+    .field input:focus,.field textarea:focus{
+      border-color:var(--accent);
+    }
+    .row{
+      display:flex;
+      gap:0.5rem;
+    }
+    .row>*{flex:1;}
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:0.5rem 0.9rem;
+      font-size:0.7rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.4rem;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent-soft));
+      color:#111;
+      box-shadow:0 10px 25px rgba(0,0,0,0.7);
+    }
+    .btn-secondary{
+      background:#080808;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+    .btn-danger{
+      background:#2a1010;
+      color:#ffdede;
+      border:1px solid #703333;
+    }
+    .btn-sm{padding:0.4rem 0.7rem;font-size:0.65rem;}
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.4rem;
+      margin-top:0.3rem;
+    }
+    .note{
+      font-size:0.7rem;
+      color:var(--muted);
+      margin-top:0.4rem;
+    }
+    textarea#output{
+      width:100%;
+      min-height:260px;
+      background:#050505;
+      border-radius:12px;
+      border:1px solid #262626;
+      color:var(--text);
+      padding:0.6rem;
+      font-family:monospace;
+      font-size:0.72rem;
+      resize:vertical;
+    }
+    .login-overlay{
+      position:fixed;
+      inset:0;
+      background:radial-gradient(circle at top,rgba(40,40,40,0.95),rgba(0,0,0,0.98));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:50;
+    }
+    .login-card{
+      width:100%;
+      max-width:360px;
+      background:#050505;
+      border-radius:20px;
+      border:1px solid #333;
+      box-shadow:0 20px 60px rgba(0,0,0,0.9);
+      padding:1rem 1.1rem 0.9rem;
+    }
+    .login-card h1{
+      font-size:0.9rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      margin-bottom:0.4rem;
+    }
+    .login-card p{
+      font-size:0.7rem;
+      color:var(--muted);
+      margin-bottom:0.6rem;
+    }
+    .login-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:0.65rem;
+      color:var(--muted);
+      margin-top:0.2rem;
+    }
+    .login-meta code{
+      background:#111;
+      padding:0.15rem 0.45rem;
+      border-radius:999px;
+      border:1px solid #333;
+      color:var(--accent);
+    }
+    @media(max-width:800px){
+      .grid{grid-template-columns:1fr;}
+      .shell{padding-inline:1rem;}
     }
   </style>
 </head>
 <body>
-
-<div class="login-overlay" id="loginOverlay">
-  <div class="login-card">
-    <div class="brand" style="margin-bottom:10px;">
-      <div class="brand-logo">GÜR</div>
-      <div class="brand-text">
-        <span>ADMIN PANEL</span>
-        <span>GÜR RENT A CAR</span>
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="brand" style="margin-bottom:0.6rem;">
+        <div class="brand-logo">GÜR</div>
+        <div class="brand-text">ADMIN PANEL</div>
       </div>
-    </div>
-    <h1>Yönetici Girişi</h1>
-    <p>Bu panel yalnızca firma içi kullanım içindir. Tüm veriler cihazınızda / GitHub repo’nuzda saklanır.</p>
-
-    <div class="field-group">
-      <label for="loginUser">Kullanıcı</label>
-      <select id="loginUser"></select>
-    </div>
-
-    <div class="field-group" style="margin-top:6px;">
-      <label for="loginPassword">Şifre</label>
-      <input id="loginPassword" type="password" autocomplete="current-password" />
-    </div>
-
-    <div class="login-meta">
-      <span>Varsayılan: <code>admin / 4242</code></span>
-      <span id="loginAttemptsInfo">0 hata</span>
-    </div>
-
-    <button class="btn btn-primary" style="width:100%;" id="loginBtn">GİRİŞ YAP</button>
-
-    <div class="login-footer">
-      <div>Cihaz: <strong id="deviceInfo"></strong></div>
-      <div>Son giriş: <span id="lastLoginInfo">-</span></div>
+      <h1>YÖNETİCİ GİRİŞİ</h1>
+      <p>Bu panel yalnızca GÜR RENT A CAR için tasarlanmıştır. Tüm işlemler tarayıcı üzerinde, dosya indirerek yapılır.</p>
+      <div class="field">
+        <label>KULLANICI ADI</label>
+        <input type="text" id="loginUser" value="admin" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label>ŞİFRE</label>
+        <input type="password" id="loginPass" autocomplete="current-password" />
+      </div>
+      <div class="login-meta">
+        <span>Varsayılan: <code>admin / gur2025</code></span>
+        <span id="loginStatus">Bekliyor</span>
+      </div>
+      <button class="btn btn-primary" id="loginBtn" style="margin-top:0.6rem;width:100%;">GİRİŞ YAP</button>
     </div>
   </div>
-</div>
 
-<div class="shell" id="appShell">
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="brand-logo">GÜR</div>
-      <div class="brand-text">
-        <span>CONTROL</span>
-        <span>ADMIN PANEL</span>
+  <div class="shell" id="appShell" style="display:none;">
+    <header class="shell-header">
+      <div class="brand">
+        <div class="brand-logo">GÜR</div>
+        <div class="brand-text">GÜR RENT A CAR • ADMIN</div>
       </div>
-    </div>
-
-    <div>
-      <div class="sidebar-section-title">GENEL</div>
-      <ul class="nav-list">
-        <li class="nav-item active" data-section="dashboard">
-          <span class="label"><span class="icon">🏠</span>Dashboard</span>
-          <small>Özet</small>
-        </li>
-        <li class="nav-item" data-section="content">
-          <span class="label"><span class="icon">✏️</span>İçerik & SEO</span>
-          <small>Metinler</small>
-        </li>
-        <li class="nav-item" data-section="fleet">
-          <span class="label"><span class="icon">🚗</span>Araç Filosu</span>
-          <small>Segmentler</small>
-        </li>
-        <li class="nav-item" data-section="forms">
-          <span class="label"><span class="icon">📨</span>Form & Rezervasyon</span>
-          <small>Kayıtlar</small>
-        </li>
-        <li class="nav-item" data-section="design">
-          <span class="label"><span class="icon">🎨</span>Tasarım & Tema</span>
-          <small>Görünüm</small>
-        </li>
-        <li class="nav-item" data-section="system">
-          <span class="label"><span class="icon">🛠</span>Sistem & Log</span>
-          <small>Log / Yedek</small>
-        </li>
-        <li class="nav-item" data-section="users">
-          <span class="label"><span class="icon">👥</span>Kullanıcılar</span>
-          <small>Roller</small>
-        </li>
-      </ul>
-    </div>
-
-    <div class="sidebar-footer">
-      <div class="status-pill">
-        <span>Durum:<br><strong id="statusSaved">Kaydedildi</strong></span>
-        <span class="dot"></span>
-      </div>
-      <div class="status-meta">
-        <div>Son kayıt: <code id="statusLastSave">-</code></div>
-        <div>Oturum: <code id="statusSession">00:00</code></div>
-      </div>
-    </div>
-  </aside>
-
-  <main class="main">
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1>GÜR RENT A CAR • ADMIN</h1>
-        <small id="topbarSubtitle">Yapılan değişiklikler yalnızca sizin cihazınız + GitHub repo’nuzdadır.</small>
-      </div>
-      <div class="topbar-right">
-        <div class="chip"><span class="dot"></span> Oturum: <span id="chipUser">admin</span></div>
-        <button class="btn btn-secondary btn-xs" id="toggleSidebarBtn">Menü</button>
-        <button class="btn btn-danger btn-xs" id="logoutBtn">Çıkış</button>
+      <div>
+        <small>Yeni içerik üret, BÖLÜM KODU OLUŞTUR ve index.html içine yapıştır veya tek tıkla YENİ index.html indir.</small>
       </div>
     </header>
 
-    <section class="content" id="section-dashboard">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Site Özeti</h2>
-            <small>Bu alan, araç sayısı, yorum sayısı, aktif kampanya vb. bilgileri özetler.</small>
-          </div>
-          <div class="card-body">
-            <div class="pill-row">
-              <div class="pill pill-strong">Araç sayısı: <span id="summaryVehicles">0</span></div>
-              <div class="pill pill-strong">Yorum sayısı: <span id="summaryTestimonials">0</span></div>
-              <div class="pill pill-strong">SSS sayısı: <span id="summaryFaqs">0</span></div>
-            </div>
-
-            <div class="pill-row mt-4">
-              <div class="pill">Aktif kampanya: <span id="summaryCampaignStatus">-</span></div>
-              <div class="pill">Başlık (TR): <span id="summaryHeroTitle">-</span></div>
-              <div class="pill">Başlık (EN): <span id="summaryHeroTitleEn">-</span></div>
-            </div>
-
-            <p class="muted mt-6">
-              İpucu: Tüm metin alanları, SEO tag’leri ve araç kartları <strong>İçerik & SEO</strong> ve
-              <strong>Araç Filosu</strong> sekmelerinden yönetilir. Değişiklik yaptıktan sonra sağ alttaki
-              <strong>Yedek Al / Script Üret</strong> alanını kullanarak yeni <code>site-config.js</code> ve/veya
-              <code>index.html</code> dosyaları oluşturabilirsiniz.
-            </p>
+    <div class="grid">
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2>İÇERİK AYARLARI</h2>
+            <small>Ana başlık, slogan, kampanya bandı, telefon & WhatsApp.</small>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Hızlı Notlar</h2>
-            <small>Site sürüm notları / yapılacaklar listesi.</small>
+        <div class="field">
+          <label>ANA BAŞLIK (HERO)</label>
+          <input type="text" id="heroTitle" value="KARAMAN’DA GÜVENLİ VE EKONOMİK ARAÇ KİRALAMA" />
+        </div>
+        <div class="field">
+          <label>SLOGAN / ALT BAŞLIK</label>
+          <textarea id="heroSub">Ekonomik, orta ve lüks araç seçenekleriyle, şehir içi ve şehir dışı yolculuklarınızda yanınızdayız.</textarea>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>TELEFON NUMARASI</label>
+            <input type="text" id="phone" value="+90 544 970 9712" />
           </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="releaseNotes">Sürüm notları (örn. v1.2 – Kampanya şeridi güncellendi)</label>
-              <textarea id="releaseNotes" placeholder="Örn: v1.0 – İlk canlı yayın, v1.1 – Yeni araç eklendi"></textarea>
-            </div>
+          <div class="field">
+            <label>WHATSAPP NUMARASI</label>
+            <input type="text" id="whatsapp" value="+90 544 970 9712" />
           </div>
         </div>
-      </div>
+        <div class="field">
+          <label>KAMPANYA / DUYURU ŞERİDİ</label>
+          <textarea id="campaign">En az 3 gün kiralamalarda özel fiyatlar için lütfen telefon veya WhatsApp ile iletişime geçiniz.</textarea>
+        </div>
+        <div class="field">
+          <label>ALT BİLGİ (COPYRIGHT METNİ)</label>
+          <textarea id="footerText">Copyright © 2024 HER HAKKI SAKLIDIR, KOPYALANMASI, ÇOĞALTILMASI VE DAĞITILMASI HALİNDE YASAL HAKLARIMIZ İŞLETİLECEKTİR.
+Reklam ve Tasarım: @huseyinelaldi7</textarea>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary btn-sm" id="genSnippetBtn">BÖLÜM KODU OLUŞTUR</button>
+          <button class="btn btn-primary btn-sm" id="genIndexBtn">YENİ index.html OLUŞTUR VE İNDİR</button>
+          <button class="btn btn-secondary btn-sm" id="genConfigBtn">site-config.js OLUŞTUR VE İNDİR</button>
+          <button class="btn btn-danger btn-sm" id="clearBtn">TÜM ALANLARI SIFIRLA</button>
+        </div>
+        <p class="note">
+          NOT: Bu panel, sadece statik dosya üretir. Oluşturulan BÖLÜM KODU'NU index.html dosyanızda uygun yere yapıştırabilir
+          veya TAM index.html indirip projeye koyabilirsiniz.
+        </p>
+      </section>
 
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Son Girişler</h2>
-            <small>Bu cihazdan yapılan admin giriş kayıtları.</small>
-          </div>
-          <div class="card-body">
-            <div class="log-list" id="loginLog"></div>
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2>ÇIKTI / ÖNİZLEME</h2>
+            <small>Oluşan HTML veya script kodu.</small>
           </div>
         </div>
+        <textarea id="output" spellcheck="false"></textarea>
+        <p class="note">
+          BÖLÜM KODU OLUŞTUR: Sadece hero bölümü ve iletişim butonlarının HTML kodunu üretir.<br>
+          YENİ index.html OLUŞTUR: Tam bir index.html dosyasını indirmenizi sağlar.<br>
+          site-config.js OLUŞTUR: Basit bir SITE_CONFIG nesnesi oluşturur.
+        </p>
+      </section>
+    </div>
+  </div>
 
-        <div class="card">
-          <div class="card-header">
-            <h2>Mini “Kurallar” Özeti</h2>
-            <small>KM – yaş – ehliyet gibi değerleri hızlı görün.</small>
-          </div>
-          <div class="card-body">
-            <div class="pill-row">
-              <div class="pill">
-                Min. yaş (Eko): <span id="summaryAgeEco">23</span>
-              </div>
-              <div class="pill">
-                Min. yaş (Lüks): <span id="summaryAgeLux">25</span>
-              </div>
-              <div class="pill">
-                Min. ehliyet (Eko / Orta): <span id="summaryLicEco">3 yıl</span>
-              </div>
-              <div class="pill">
-                Min. ehliyet (Lüks): <span id="summaryLicLux">5 yıl</span>
-              </div>
-            </div>
-            <p class="muted mt-6">
-              Bu değerler <strong>İçerik & SEO → Kurallar</strong> alanından düzenlenebilir.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <script>
+    // Basit login: admin / gur2025
+    const LOGIN_USER = "admin";
+    const LOGIN_PASS = "gur2025";
 
-    <!-- CONTENT & SEO -->
-    <section class="content" id="section-content" style="display:none;">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>SEO & Meta</h2>
-            <small>Google & WhatsApp paylaşımı için başlık, açıklama ve etiketler.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="metaTitle">Meta Title</label>
-              <input id="metaTitle" type="text" placeholder="GÜR RENT A CAR | Karaman Araç Kiralama" />
-            </div>
-            <div class="field-group">
-              <label for="metaDescription">Meta Description</label>
-              <textarea id="metaDescription" placeholder="Karaman’da güvenli ve ekonomik araç kiralama..."></textarea>
-            </div>
-            <div class="field-group">
-              <label for="metaKeywords">Meta Keywords (virgülle ayrılmış)</label>
-              <input id="metaKeywords" type="text" />
-            </div>
-            <div class="field-group">
-              <label for="ogImage">Open Graph Görsel URL’i (WhatsApp & sosyal paylaşım)</label>
-              <input id="ogImage" type="text" placeholder="https://.../gurrentacar-og.jpg" />
-            </div>
-            <div class="field-group">
-              <label for="hashtags">Sık kullanılan hashtag’ler (# ile)</label>
-              <textarea id="hashtags" placeholder="#gurrentacar #karamanarackiralama"></textarea>
-            </div>
-          </div>
-        </div>
+    const loginOverlay = document.getElementById("loginOverlay");
+    const loginUser    = document.getElementById("loginUser");
+    const loginPass    = document.getElementById("loginPass");
+    const loginBtn     = document.getElementById("loginBtn");
+    const loginStatus  = document.getElementById("loginStatus");
+    const appShell     = document.getElementById("appShell");
 
-        <div class="card">
-          <div class="card-header">
-            <h2>Hero & Kampanya</h2>
-            <small>Ana sayfadaki büyük başlık ve kampanya şeridi.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="heroTitleTr">Hero Başlık (TR)</label>
-              <input id="heroTitleTr" type="text" />
-            </div>
-            <div class="field-group">
-              <label for="heroTitleEn">Hero Title (EN)</label>
-              <input id="heroTitleEn" type="text" />
-            </div>
-            <div class="field-group">
-              <label for="heroSubtitle">Hero Alt Başlık</label>
-              <textarea id="heroSubtitle"></textarea>
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="heroCtaCall">CTA 1 (Telefon butonu)</label>
-                <input id="heroCtaCall" type="text" placeholder="HEMEN ARA" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="heroCtaWp">CTA 2 (WhatsApp butonu)</label>
-                <input id="heroCtaWp" type="text" placeholder="WHATSAPP" />
-              </div>
-            </div>
-
-            <div class="field-row">
-              <div class="field-group" style="flex:2;">
-                <label for="campaignText">Kampanya Şeridi Metni</label>
-                <textarea id="campaignText"></textarea>
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="campaignEnabled">Kampanya Durumu</label>
-                <select id="campaignEnabled">
-                  <option value="true">Aktif</option>
-                  <option value="false">Pasif</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field-group">
-              <label for="airportNote">Havaalanı / Otogar Servisi Mini Metni</label>
-              <textarea id="airportNote"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Neden Biz & Kurumsal Metin</h2>
-            <small>Bullet list & uzun dönem bilgi metni.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="whyUsList">Neden Biz Maddeleri (her satır bir madde)</label>
-              <textarea id="whyUsList" placeholder="En iyi fiyatlar&#10;Hızlı rezervasyon&#10;Bakımlı araçlar"></textarea>
-            </div>
-            <div class="field-group">
-              <label for="corporateText">Kurumsal kiralama bilgi metni</label>
-              <textarea id="corporateText"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>İletişim Bilgileri</h2>
-            <small>Telefon, WhatsApp, adres vb.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="contactAddress">Adres</label>
-              <textarea id="contactAddress"></textarea>
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="contactPhone1">Telefon 1</label>
-                <input id="contactPhone1" type="text" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="contactPhone2">Telefon 2</label>
-                <input id="contactPhone2" type="text" />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="contactWhatsapp">WhatsApp</label>
-                <input id="contactWhatsapp" type="text" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="contactMail">E-posta</label>
-                <input id="contactMail" type="text" placeholder="opsiyonel" />
-              </div>
-            </div>
-            <div class="field-group">
-              <label for="contactInsta">Instagram Kullanıcı Adı</label>
-              <input id="contactInsta" type="text" placeholder="@gurrentacar" />
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="workingHours">Çalışma Saatleri</label>
-                <input id="workingHours" type="text" placeholder="7/24 veya 08:30 - 19:00" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="holidayNotes">Özel / Tatil Günleri Notu</label>
-                <input id="holidayNotes" type="text" placeholder="Resmi tatillerde öncesinden arayınız." />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Kurallar & Koşullar (Özet)</h2>
-            <small>Yaş, ehliyet yılı, KM sınırı vb. kısa özet.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="ruleAgeEco">Ekonomik / Orta min. yaş</label>
-                <input id="ruleAgeEco" type="number" min="18" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="ruleAgeLux">Lüks min. yaş</label>
-                <input id="ruleAgeLux" type="number" min="18" />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="ruleLicEco">Ekonomik / Orta min. ehliyet (yıl)</label>
-                <input id="ruleLicEco" type="number" min="0" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="ruleLicLux">Lüks min. ehliyet (yıl)</label>
-                <input id="ruleLicLux" type="number" min="0" />
-              </div>
-            </div>
-            <div class="field-group">
-              <label for="ruleKmSummary">KM özet metni</label>
-              <textarea id="ruleKmSummary" placeholder="Günlük maksimum 250 KM, aylık kiralamalarda 3000 KM..." ></textarea>
-            </div>
-            <div class="field-group">
-              <label for="termsText">Koşul & Sözleşme tam metni (markdown destekli)</label>
-              <textarea id="termsText"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Yorumlar & SSS</h2>
-            <small>Müşteri yorumları ve sıkça sorulan sorular.</small>
-          </div>
-          <div class="card-body">
-            <div class="tabs">
-              <button class="tab-btn active" data-tab="testimonials">Yorumlar</button>
-              <button class="tab-btn" data-tab="faqs">SSS</button>
-            </div>
-
-            <div class="tab-panel active" id="tab-testimonials">
-              <div class="field-row">
-                <div class="field-group" style="flex:1;">
-                  <label for="testimonialName">İsim</label>
-                  <input id="testimonialName" type="text" />
-                </div>
-                <div class="field-group" style="width:80px;">
-                  <label for="testimonialStars">Yıldız</label>
-                  <input id="testimonialStars" type="number" min="1" max="5" value="5" />
-                </div>
-              </div>
-              <div class="field-group">
-                <label for="testimonialText">Yorum</label>
-                <textarea id="testimonialText"></textarea>
-              </div>
-              <div class="align-right">
-                <button class="btn btn-secondary btn-xs" id="addTestimonialBtn">Yorum Ekle</button>
-              </div>
-              <table class="table" id="testimonialTable">
-                <thead>
-                  <tr><th>İsim</th><th>Yorum</th><th>★</th><th></th></tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-
-            <div class="tab-panel" id="tab-faqs">
-              <div class="field-group">
-                <label for="faqQuestion">Soru</label>
-                <input id="faqQuestion" type="text" />
-              </div>
-              <div class="field-group">
-                <label for="faqAnswer">Cevap</label>
-                <textarea id="faqAnswer"></textarea>
-              </div>
-              <div class="align-right">
-                <button class="btn btn-secondary btn-xs" id="addFaqBtn">SSS Ekle</button>
-              </div>
-              <table class="table" id="faqTable">
-                <thead>
-                  <tr><th>Soru</th><th>Cevap</th><th></th></tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- FLEET -->
-    <section class="content" id="section-fleet" style="display:none;">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Araç Kartı Ekle / Düzenle</h2>
-            <small>Filonuza yeni araç ekleyin veya düzenleyin.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="vehicleId">ID (otomatik veya manuel)</label>
-                <input id="vehicleId" type="text" placeholder="Örn: accent-1" />
-              </div>
-              <div class="field-group" style="width:140px;">
-                <label for="vehicleSegment">Segment</label>
-                <select id="vehicleSegment">
-                  <option value="ekonomik">Ekonomik</option>
-                  <option value="orta">Orta</option>
-                  <option value="lüks">Lüks</option>
-                </select>
-              </div>
-              <div class="field-group" style="width:120px;">
-                <label for="vehicleStatus">Durum</label>
-                <select id="vehicleStatus">
-                  <option value="uygun">Uygun</option>
-                  <option value="dolu">Dolu</option>
-                  <option value="bakımda">Bakımda</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="vehicleBrand">Marka</label>
-                <input id="vehicleBrand" type="text" placeholder="Hyundai" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="vehicleModel">Model</label>
-                <input id="vehicleModel" type="text" placeholder="Accent Blue" />
-              </div>
-            </div>
-
-            <div class="field-row">
-              <div class="field-group" style="width:90px;">
-                <label for="vehicleYear">Yıl</label>
-                <input id="vehicleYear" type="number" min="2000" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="vehicleTransmission">Vites</label>
-                <input id="vehicleTransmission" type="text" placeholder="Manuel / Otomatik" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="vehicleFuel">Yakıt</label>
-                <input id="vehicleFuel" type="text" placeholder="Dizel / Benzin" />
-              </div>
-              <div class="field-group" style="width:110px;">
-                <label for="vehiclePrice">Günlük ₺</label>
-                <input id="vehiclePrice" type="number" min="0" />
-              </div>
-            </div>
-
-            <div class="field-group">
-              <label for="vehicleTags">Etiketler (virgülle, örn: dizel,otomatik,aile için uygun)</label>
-              <input id="vehicleTags" type="text" />
-            </div>
-            <div class="field-group">
-              <label for="vehicleImage">Araç Görsel Dosya Adı / URL</label>
-              <input id="vehicleImage" type="text" placeholder="accent-blue.png veya https://... " />
-            </div>
-
-            <div class="align-right">
-              <button class="btn btn-secondary btn-xs" id="clearVehicleFormBtn">Yeni</button>
-              <button class="btn btn-primary btn-xs" id="saveVehicleBtn">Kaydet / Güncelle</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Segment Ayarları</h2>
-            <small>Ekonomik / Orta / Lüks için açıklama.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="segmentEcoText">Ekonomik Açıklama</label>
-              <textarea id="segmentEcoText"></textarea>
-            </div>
-            <div class="field-group">
-              <label for="segmentMidText">Orta Segment Açıklama</label>
-              <textarea id="segmentMidText"></textarea>
-            </div>
-            <div class="field-group">
-              <label for="segmentLuxText">Lüks Segment Açıklama</label>
-              <textarea id="segmentLuxText"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Araç Listesi</h2>
-            <small>Filodaki tüm araçlar.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="vehicleSearch">Ara (marka / model)</label>
-                <input id="vehicleSearch" type="text" />
-              </div>
-              <div class="field-group" style="width:140px;">
-                <label for="vehicleFilterSegment">Segment</label>
-                <select id="vehicleFilterSegment">
-                  <option value="">Tümü</option>
-                  <option value="ekonomik">Ekonomik</option>
-                  <option value="orta">Orta</option>
-                  <option value="lüks">Lüks</option>
-                </select>
-              </div>
-            </div>
-
-            <table class="table" id="vehicleTable">
-              <thead>
-                <tr>
-                  <th>Marka / Model</th>
-                  <th>Seg.</th>
-                  <th>Durum</th>
-                  <th>₺</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMS -->
-    <section class="content" id="section-forms" style="display:none;">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Rezervasyon Talep Formu Ayarları</h2>
-            <small>Form alanlarını ve WhatsApp hazır metnini düzenleyin.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="formEnabledFields">Aktif Alanlar (virgülle, örn: ad,telefon,teslimTarihi)</label>
-              <input id="formEnabledFields" type="text" placeholder="ad,telefon,mail,teslimTarihi,teslimSaati" />
-            </div>
-            <div class="field-group">
-              <label for="formWpTemplate">WhatsApp Hazır Mesaj</label>
-              <textarea id="formWpTemplate" placeholder="Merhaba, Gür Rent A Car’dan araç kiralamak istiyorum..."></textarea>
-            </div>
-            <div class="field-group">
-              <label for="formSuccessText">Form Gönderim Başarılı Mesajı</label>
-              <textarea id="formSuccessText"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Manuel Rezervasyon Kaydı</h2>
-            <small>Basit bir kayıt defteri; istersen CSV olarak dışa aktar.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="resName">Ad Soyad</label>
-                <input id="resName" type="text" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="resPhone">Telefon</label>
-                <input id="resPhone" type="text" />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="resCar">Araç / Segment</label>
-                <input id="resCar" type="text" placeholder="Accent Blue / Ekonomik" />
-              </div>
-              <div class="field-group" style="width:120px;">
-                <label for="resDays">Gün</label>
-                <input id="resDays" type="number" min="1" value="3" />
-              </div>
-            </div>
-            <div class="field-group">
-              <label for="resNote">Not</label>
-              <textarea id="resNote"></textarea>
-            </div>
-            <div class="align-right">
-              <button class="btn btn-secondary btn-xs" id="addReservationBtn">Kaydı Ekle</button>
-              <button class="btn btn-secondary btn-xs" id="exportReservationCsvBtn">CSV Olarak İndir</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Rezervasyon Listesi</h2>
-            <small>Manuel eklenen kayıtlar (bu cihazda saklanır).</small>
-          </div>
-          <div class="card-body">
-            <table class="table" id="reservationTable">
-              <thead>
-                <tr>
-                  <th>Ad</th>
-                  <th>Tel</th>
-                  <th>Araç</th>
-                  <th>Gün</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-            <p class="muted mt-6">
-              Not: Gerçek form gönderimlerini takip etmek için index.html tarafında ayrı bir entegrasyon gerekir.
-              Bu tablo, ofis içi notlar için hazırlanmış basit bir kayıt defteridir.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DESIGN -->
-    <section class="content" id="section-design" style="display:none;">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Tema & Renkler</h2>
-            <small>Ana tema renklerini ayarlayın.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="themeAccent">Ana vurgulu renk (accent)</label>
-                <input id="themeAccent" type="text" placeholder="#F0C037" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="themeAccentSoft">Accent yumuşak</label>
-                <input id="themeAccentSoft" type="text" placeholder="#E8B225" />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="themeRadius">Kart köşe yuvarlaklık (px)</label>
-                <input id="themeRadius" type="number" min="0" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="themeMode">Varsayılan tema</label>
-                <select id="themeMode">
-                  <option value="dark">Dark</option>
-                  <option value="light">Light</option>
-                </select>
-              </div>
-            </div>
-            <div class="field-group">
-              <label for="logoPath">Logo dosya adı / URL</label>
-              <input id="logoPath" type="text" placeholder="logo-gur-rentacar.jpeg" />
-            </div>
-            <div class="field-group">
-              <label for="sliderImages">Hero slider görselleri (her satır bir dosya adı / URL)</label>
-              <textarea id="sliderImages"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Saat & Performans Notu</h2>
-            <small>Site alt kısmında görünecek küçük bilgiler.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="perfNote">Performans / güvenlik notu</label>
-              <textarea id="perfNote" placeholder="Site, statik HTML olarak yayınlanmakta olup, kişisel veriler sunucu tarafında saklanmamaktadır."></textarea>
-            </div>
-            <div class="field-group">
-              <label for="clockEnabled">Alt kısımda dijital saat göster</label>
-              <select id="clockEnabled">
-                <option value="true">Evet</option>
-                <option value="false">Hayır</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Footer & Telif</h2>
-            <small>Alt bilgi metinlerini yönet.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label for="copyrightText">Copyright Metni</label>
-              <textarea id="copyrightText"></textarea>
-            </div>
-            <div class="field-group">
-              <label for="designCredit">Reklam & Tasarım Kredisi</label>
-              <input id="designCredit" type="text" placeholder="Reklam ve Tasarım: @huseyinelaldi7" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SYSTEM -->
-    <section class="content" id="section-system" style="display:none;">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Log & Sistem Bilgisi</h2>
-            <small>Oturum süresi, son kaydetme vb.</small>
-          </div>
-          <div class="card-body">
-            <div class="pill-row">
-              <div class="pill">
-                Oturum süresi: <span id="systemSession">00:00</span>
-              </div>
-              <div class="pill">
-                Son kaydetme: <span id="systemLastSave">-</span>
-              </div>
-              <div class="pill">
-                Cihaz: <span id="systemDevice"></span>
-              </div>
-            </div>
-            <p class="muted mt-6">
-              Oturum süresi 20 dakikayı geçtiğinde güvenlik için otomatik çıkış yapılır (basit timeout).
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h2>Yedekleme</h2>
-            <small>Tüm ayarları JSON olarak indir / geri yükle.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <button class="btn btn-secondary btn-xs" id="exportConfigBtn">Yedek İndir (JSON)</button>
-              <label class="btn btn-secondary btn-xs" style="cursor:pointer;">
-                Yedek Yükle
-                <input id="importConfigInput" type="file" accept="application/json" style="display:none;" />
-              </label>
-              <button class="btn btn-danger btn-xs" id="resetConfigBtn">Tüm Ayarları Sıfırla</button>
-            </div>
-            <p class="muted mt-6">
-              Not: Sıfırlama işlemi bu tarayıcıdaki <code>localStorage</code> kaydınızı temizler. GitHub’daki dosyalar
-              etkilenmez.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Script & index.html Üretimi</h2>
-            <small>site-config.js ve basit bir index.html iskeleti üret.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-group">
-              <label>1) site-config.js oluştur ve indir</label>
-              <button class="btn btn-primary btn-xs" id="downloadSiteConfigBtn">site-config.js İndir</button>
-            </div>
-            <div class="field-group mt-4">
-              <label>2) Basit index.html iskeleti oluştur ve indir</label>
-              <button class="btn btn-secondary btn-xs" id="downloadIndexBtn">index.html İndir</button>
-            </div>
-            <p class="muted mt-6">
-              Oluşan <code>site-config.js</code> dosyasını proje klasörünüze koyup, index.html içinde
-              <code>&lt;script src="site-config.js"&gt;&lt;/script&gt;</code> ile kullanabilirsiniz. index.html iskeleti,
-              mevcut sitedeki tasarımın bire bir kopyası değildir; meta ve temel blokları otomatik doldurur.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- USERS -->
-    <section class="content" id="section-users" style="display:none;">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Kullanıcılar & Roller</h2>
-            <small>Admin, editör gibi kullanıcılar tanımlayın.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="userName">Kullanıcı adı</label>
-                <input id="userName" type="text" placeholder="ör. admin2" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="userPassword">Şifre</label>
-                <input id="userPassword" type="text" placeholder="en az 4 karakter" />
-              </div>
-              <div class="field-group" style="width:130px;">
-                <label for="userRole">Rol</label>
-                <select id="userRole">
-                  <option value="owner">Owner</option>
-                  <option value="admin">Admin</option>
-                  <option value="editor">Editör</option>
-                  <option value="viewer">Sadece Görüntüleme</option>
-                </select>
-              </div>
-            </div>
-            <div class="align-right">
-              <button class="btn btn-secondary btn-xs" id="addUserBtn">Kullanıcı Ekle / Güncelle</button>
-            </div>
-            <table class="table" id="userTable">
-              <thead>
-                <tr><th>Kullanıcı</th><th>Rol</th><th></th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-            <p class="muted mt-6">
-              Güvenlik notu: Bu panel tamamen <strong>frontend</strong> tarafında çalışır. Şifreler, bu tarayıcıdaki
-              <code>localStorage</code> içinde saklanır. Gerçek bir sunucu tarafı şifreleme yapılmaz. Yani bu sistem
-              şirket içi kullanım için uygundur, kamuya açık bilgisayarlarda önermem.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h2>Giriş Ayarları</h2>
-            <small>Deneme limiti, timeout vs.</small>
-          </div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field-group" style="flex:1;">
-                <label for="loginLimit">Maks. yanlış giriş denemesi</label>
-                <input id="loginLimit" type="number" min="1" value="5" />
-              </div>
-              <div class="field-group" style="flex:1;">
-                <label for="sessionTimeout">Oturum süresi (dk)</label>
-                <input id="sessionTimeout" type="number" min="5" value="20" />
-              </div>
-            </div>
-            <p class="muted mt-6">
-              Bu değerler yalnızca admin paneli için geçerlidir. Yanlış şifre limiti dolduğunda panel geçici olarak
-              kilitlenir.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-</div>
-
-<script>
-(function () {
-  const LS_CONFIG_KEY = "GUR_ADMIN_CONFIG_V1";
-  const LS_USERS_KEY  = "GUR_ADMIN_USERS_V1";
-  const LS_LOGIN_LOG  = "GUR_ADMIN_LOGIN_LOG_V1";
-  const LS_RES        = "GUR_ADMIN_RESERVATIONS_V1";
-  const LS_VEHICLES   = "GUR_ADMIN_VEHICLES_V1";
-
-  let CONFIG = loadConfig();
-  let USERS  = loadUsers();
-  let SESSION = {
-    start: Date.now(),
-    currentUser: null,
-    timeoutMinutes: 20,
-    loginLimit: 5,
-    failedAttempts: 0,
-    lockedUntil: 0
-  };
-
-  /* ---------- UTILITIES ---------- */
-
-  function nowString() {
-    const d = new Date();
-    return d.toLocaleString("tr-TR");
-  }
-
-  function saveConfig() {
-    localStorage.setItem(LS_CONFIG_KEY, JSON.stringify(CONFIG));
-    document.getElementById("statusSaved").textContent = "Kaydedildi";
-    const t = nowString();
-    document.getElementById("statusLastSave").textContent = t;
-    document.getElementById("systemLastSave").textContent = t;
-    updateSummaryBadges();
-  }
-
-  function loadConfig() {
-    const fromLs = localStorage.getItem(LS_CONFIG_KEY);
-    if (fromLs) {
-      try {
-        return JSON.parse(fromLs);
-      } catch (e) {}
-    }
-    return {
-      meta: {
-        title: "GÜR RENT A CAR | Karaman Araç Kiralama",
-        description: "Karaman’da güvenli ve ekonomik araç kiralama.",
-        keywords: "karaman rent a car, karaman araç kiralama, gür rent a car",
-        ogImage: "",
-        hashtags: [
-          "#gurrentacar",
-          "#karamanarackiralama",
-          "#karamanrentacar",
-          "#arackiralama",
-          "#konyaarackiralama",
-          "#ahmetgür"
-        ]
-      },
-      hero: {
-        titleTr: "KARAMAN’DA GÜVENLİ VE EKONOMİK ARAÇ KİRALAMA",
-        titleEn: "Safe & Economic Car Rental in Karaman",
-        subtitle: "Ekonomik, orta ve lüks araçlarla 7/24 hizmetinizdeyiz.",
-        ctaCall: "HEMEN ARA",
-        ctaWp: "WHATSAPP",
-        campaignText: "En az 3 gün kiralamalarda özel indirim için lütfen telefon veya WhatsApp ile iletişime geçin.",
-        campaignEnabled: true,
-        airportNote: "Havaalanı ve otogar servisi ile zamanında teslimat sağlanır."
-      },
-      whyUs: [
-        "En iyi fiyatlar",
-        "Hızlı rezervasyon",
-        "Bakımlı araçlar",
-        "Araç güvenliği",
-        "7/24 iletişim"
-      ],
-      corporateText: "Uzun dönem ve kurumsal kiralama talepleriniz için lütfen telefon veya WhatsApp üzerinden bizimle iletişime geçin.",
-      contact: {
-        address: "Külhan Mh. 2. İstasyon Cd. No:29/E Merkez/Karaman",
-        phone1: "+90 544 970 9712",
-        phone2: "+90 541 242 7267",
-        whatsapp: "+90 544 970 9712",
-        email: "",
-        instagram: "@gurrentacar",
-        workingHours: "7/24",
-        holidayNotes: ""
-      },
-      rules: {
-        ageEco: 23,
-        ageLux: 25,
-        licEco: 3,
-        licLux: 5,
-        kmSummary: "Günlük maksimum 250 KM, aylık kiralamalarda 3000 KM sınırı uygulanır.",
-        termsText: ""
-      },
-      testimonials: [
-        { name: "Fatih P.", text: "Tıkır tıkır işleyen sistemleri var, tavsiye ederim.", stars: 5 },
-        { name: "Salih K.", text: "Aldığımız araç çok yeni ve temizdi.", stars: 5 },
-        { name: "Melike A.", text: "Firma ilgili, biz memnun kaldık.", stars: 5 },
-        { name: "Rahmi B.", text: "Her şey güzel.", stars: 5 }
-      ],
-      faqs: [],
-      segments: {
-        ecoText: "",
-        midText: "",
-        luxText: ""
-      },
-      form: {
-        enabledFields: "ad,telefon,mail,teslimTarihi,teslimSaati",
-        wpTemplate: "Merhaba, Gür Rent A Car’dan araç kiralamak istiyorum.",
-        successText: "Talebiniz alınmıştır, en kısa sürede dönüş yapacağız."
-      },
-      theme: {
-        accent: "#F0C037",
-        accentSoft: "#E8B225",
-        radius: 20,
-        mode: "dark",
-        logoPath: "logo-gur-rentacar.jpeg",
-        sliderImages: "",
-        perfNote: "Site statik HTML olarak yayınlanmaktadır; kişisel veriler sunucu tarafında saklanmaz.",
-        clockEnabled: true
-      },
-      footer: {
-        copyright: "Copyright © 2024 Her Hakkı Saklıdır, Kopyalanması, çoğaltılması ve dağıtılması halinde yasal haklarımız işletilecektir.",
-        designCredit: "Reklam ve Tasarım: @huseyinelaldi7"
-      },
-      releaseNotes: "",
-      loginSettings: {
-        limit: 5,
-        timeoutMinutes: 20
+    function doLogin(){
+      if(loginUser.value.trim() === LOGIN_USER && loginPass.value === LOGIN_PASS){
+        loginStatus.textContent = "Giriş başarılı";
+        loginOverlay.style.display = "none";
+        appShell.style.display = "block";
+      }else{
+        loginStatus.textContent = "Hatalı kullanıcı adı veya şifre";
       }
-    };
-  }
-
-  function loadUsers() {
-    const fromLs = localStorage.getItem(LS_USERS_KEY);
-    if (fromLs) {
-      try {
-        const parsed = JSON.parse(fromLs);
-        if (Array.isArray(parsed) && parsed.length) return parsed;
-      } catch (e) {}
     }
-    const defaultUsers = [{ username: "admin", password: "4242", role: "owner" }];
-    localStorage.setItem(LS_USERS_KEY, JSON.stringify(defaultUsers));
-    return defaultUsers;
-  }
+    loginBtn.addEventListener("click", doLogin);
+    loginPass.addEventListener("keydown", e => { if(e.key === "Enter") doLogin(); });
 
-  function saveUsers() {
-    localStorage.setItem(LS_USERS_KEY, JSON.stringify(USERS));
-  }
-
-  function saveLoginLog(entry) {
-    const fromLs = localStorage.getItem(LS_LOGIN_LOG);
-    let arr = [];
-    if (fromLs) {
-      try { arr = JSON.parse(fromLs) || []; } catch (e) {}
-    }
-    arr.unshift(entry);
-    arr = arr.slice(0, 20);
-    localStorage.setItem(LS_LOGIN_LOG, JSON.stringify(arr));
-  }
-
-  function loadLoginLog() {
-    const fromLs = localStorage.getItem(LS_LOGIN_LOG);
-    if (fromLs) {
-      try { return JSON.parse(fromLs) || []; } catch (e) {}
-    }
-    return [];
-  }
-
-  function loadVehicles() {
-    const fromLs = localStorage.getItem(LS_VEHICLES);
-    if (fromLs) {
-      try { return JSON.parse(fromLs) || []; } catch(e) {}
-    }
-    return [];
-  }
-
-  function saveVehicles(list) {
-    localStorage.setItem(LS_VEHICLES, JSON.stringify(list));
-  }
-
-  function loadReservations() {
-    const fromLs = localStorage.getItem(LS_RES);
-    if (fromLs) {
-      try { return JSON.parse(fromLs) || []; } catch(e) {}
-    }
-    return [];
-  }
-
-  function saveReservations(list) {
-    localStorage.setItem(LS_RES, JSON.stringify(list));
-  }
-
-  /* ---------- LOGIN UI ---------- */
-
-  const loginOverlay = document.getElementById("loginOverlay");
-  const loginUserSel = document.getElementById("loginUser");
-  const loginPasswordInput = document.getElementById("loginPassword");
-  const loginAttemptsInfo = document.getElementById("loginAttemptsInfo");
-  const deviceInfoEl = document.getElementById("deviceInfo");
-  const lastLoginInfo = document.getElementById("lastLoginInfo");
-  const loginBtn = document.getElementById("loginBtn");
-
-  deviceInfoEl.textContent = navigator.userAgent.split(")").shift() + ")";
-
-  function renderLoginUsers() {
-    loginUserSel.innerHTML = "";
-    USERS.forEach(u => {
-      const opt = document.createElement("option");
-      opt.value = u.username;
-      opt.textContent = u.username + " (" + u.role + ")";
-      loginUserSel.appendChild(opt);
-    });
-  }
-
-  function renderLoginLog() {
-    const logArr = loadLoginLog();
-    const container = document.getElementById("loginLog");
-    container.innerHTML = "";
-    if (!logArr.length) {
-      container.textContent = "Henüz giriş kaydı yok.";
-      return;
-    }
-    logArr.forEach(entry => {
-      const div = document.createElement("div");
-      div.className = "log-entry";
-      div.innerHTML = `<strong>${entry.username}</strong> • ${entry.time}<br><span class="muted">${entry.device}</span>`;
-      container.appendChild(div);
-    });
-    const last = logArr[0];
-    if (last) {
-      lastLoginInfo.textContent = `${last.username} • ${last.time}`;
-    }
-  }
-
-  function attemptLogin() {
-    const selected = loginUserSel.value;
-    const pwd = loginPasswordInput.value.trim();
-    const user = USERS.find(u => u.username === selected);
-    const now = Date.now();
-
-    if (SESSION.lockedUntil && now < SESSION.lockedUntil) {
-      alert("Çok fazla hatalı deneme yapıldı. Birkaç dakika sonra tekrar deneyin.");
-      return;
+    // Yardımcı: indirme fonksiyonu
+    function downloadFile(filename, content){
+      const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
-    if (!user || user.password !== pwd) {
-      SESSION.failedAttempts++;
-      const limit = CONFIG.loginSettings?.limit || 5;
-      loginAttemptsInfo.textContent = SESSION.failedAttempts + " hata";
-      if (SESSION.failedAttempts >= limit) {
-        SESSION.lockedUntil = now + 5 * 60 * 1000;
-        alert("Hatalı deneme limiti aşıldı. 5 dakika kilitlendi.");
-      } else {
-        alert("Kullanıcı adı veya şifre hatalı.");
-      }
-      return;
-    }
+    const outEl = document.getElementById("output");
 
-    // success
-    SESSION.currentUser = user;
-    SESSION.start = Date.now();
-    SESSION.failedAttempts = 0;
-    SESSION.lockedUntil = 0;
-    document.getElementById("chipUser").textContent = user.username + " • " + user.role;
+    // BÖLÜM KODU OLUŞTUR
+    document.getElementById("genSnippetBtn").addEventListener("click", () => {
+      const heroTitle = document.getElementById("heroTitle").value.trim();
+      const heroSub   = document.getElementById("heroSub").value.trim();
+      const phone     = document.getElementById("phone").value.trim();
+      const whatsapp  = document.getElementById("whatsapp").value.trim();
+      const campaign  = document.getElementById("campaign").value.trim();
 
-    saveLoginLog({
-      username: user.username,
-      time: nowString(),
-      device: navigator.userAgent
+      const snippet = `<!-- HERO BÖLÜMÜ BAŞLANGIÇ -->
+<section class="hero" id="hero">
+  <div class="container hero-grid" data-reveal>
+    <div>
+      <div class="eyebrow">KİRALAMANIN HIZLI VE KOLAY YOLU</div>
+      <h1 class="hero-title">${heroTitle}</h1>
+      <p class="hero-sub">
+        ${heroSub}
+      </p>
+      <div class="hero-badge">GÜR RENT A CAR FİRMASI <u>AHMET GÜR KURULUŞUDUR</u></div>
+      <div class="hero-owner">İŞYERİ SAHİBİ: <span>AHMET GÜR</span></div>
+
+      <div class="cta-row">
+        <a href="tel:${phone.replace(/\s+/g,'')}" class="cta-btn cta-btn-call">
+          <span class="cta-icon">📞</span>
+          <span class="cta-label">
+            HEMEN ARA
+            <small>${phone}</small>
+          </span>
+        </a>
+        <a href="https://wa.me/${whatsapp.replace(/[^0-9]/g,'')}" class="cta-btn cta-btn-wp" target="_blank" rel="noopener">
+          <span class="cta-icon">💬</span>
+          <span class="cta-label">
+            WHATSAPP
+            <small>7/24 HIZLI İLETİŞİM</small>
+          </span>
+        </a>
+      </div>
+      <p class="hero-note">
+        ${campaign}
+      </p>
+    </div>
+  </div>
+</section>
+<!-- HERO BÖLÜMÜ BİTİŞ -->`;
+
+      outEl.value = snippet;
     });
 
-    renderLoginLog();
-    loginOverlay.style.display = "none";
-  }
+    // site-config.js oluştur
+    document.getElementById("genConfigBtn").addEventListener("click", () => {
+      const heroTitle = document.getElementById("heroTitle").value.trim();
+      const heroSub   = document.getElementById("heroSub").value.trim();
+      const phone     = document.getElementById("phone").value.trim();
+      const whatsapp  = document.getElementById("whatsapp").value.trim();
+      const campaign  = document.getElementById("campaign").value.trim();
+      const footer    = document.getElementById("footerText").value.trim();
 
-  loginBtn.addEventListener("click", attemptLogin);
-  loginPasswordInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") attemptLogin();
-  });
-
-  renderLoginUsers();
-  renderLoginLog();
-
-  /* ---------- NAVIGATION ---------- */
-
-  const navItems = document.querySelectorAll(".nav-item");
-  const sections = {
-    dashboard: document.getElementById("section-dashboard"),
-    content: document.getElementById("section-content"),
-    fleet: document.getElementById("section-fleet"),
-    forms: document.getElementById("section-forms"),
-    design: document.getElementById("section-design"),
-    system: document.getElementById("section-system"),
-    users: document.getElementById("section-users")
-  };
-
-  navItems.forEach(item => {
-    item.addEventListener("click", () => {
-      navItems.forEach(i => i.classList.remove("active"));
-      item.classList.add("active");
-      const sec = item.getAttribute("data-section");
-      for (const key in sections) {
-        sections[key].style.display = key === sec ? "grid" : "none";
-      }
-    });
-  });
-
-  document.getElementById("toggleSidebarBtn").addEventListener("click", () => {
-    document.getElementById("appShell").classList.toggle("sidebar-open");
-  });
-
-  /* ---------- LOAD UI FROM CONFIG ---------- */
-
-  function applyConfigToForm() {
-    // SEO
-    document.getElementById("metaTitle").value = CONFIG.meta.title;
-    document.getElementById("metaDescription").value = CONFIG.meta.description;
-    document.getElementById("metaKeywords").value = CONFIG.meta.keywords;
-    document.getElementById("ogImage").value = CONFIG.meta.ogImage || "";
-    document.getElementById("hashtags").value = CONFIG.meta.hashtags.join("\n");
-
-    // Hero / campaign
-    document.getElementById("heroTitleTr").value = CONFIG.hero.titleTr;
-    document.getElementById("heroTitleEn").value = CONFIG.hero.titleEn;
-    document.getElementById("heroSubtitle").value = CONFIG.hero.subtitle;
-    document.getElementById("heroCtaCall").value = CONFIG.hero.ctaCall;
-    document.getElementById("heroCtaWp").value = CONFIG.hero.ctaWp;
-    document.getElementById("campaignText").value = CONFIG.hero.campaignText;
-    document.getElementById("campaignEnabled").value = CONFIG.hero.campaignEnabled ? "true" : "false";
-    document.getElementById("airportNote").value = CONFIG.hero.airportNote || "";
-
-    // why us & corporate
-    document.getElementById("whyUsList").value = CONFIG.whyUs.join("\n");
-    document.getElementById("corporateText").value = CONFIG.corporateText;
-
-    // contact
-    document.getElementById("contactAddress").value = CONFIG.contact.address;
-    document.getElementById("contactPhone1").value = CONFIG.contact.phone1;
-    document.getElementById("contactPhone2").value = CONFIG.contact.phone2;
-    document.getElementById("contactWhatsapp").value = CONFIG.contact.whatsapp;
-    document.getElementById("contactMail").value = CONFIG.contact.email || "";
-    document.getElementById("contactInsta").value = CONFIG.contact.instagram;
-    document.getElementById("workingHours").value = CONFIG.contact.workingHours || "";
-    document.getElementById("holidayNotes").value = CONFIG.contact.holidayNotes || "";
-
-    // rules
-    document.getElementById("ruleAgeEco").value = CONFIG.rules.ageEco;
-    document.getElementById("ruleAgeLux").value = CONFIG.rules.ageLux;
-    document.getElementById("ruleLicEco").value = CONFIG.rules.licEco;
-    document.getElementById("ruleLicLux").value = CONFIG.rules.licLux;
-    document.getElementById("ruleKmSummary").value = CONFIG.rules.kmSummary;
-    document.getElementById("termsText").value = CONFIG.rules.termsText || "";
-
-    // testimonials & faqs
-    renderTestimonials();
-    renderFaqs();
-
-    // segments
-    document.getElementById("segmentEcoText").value = CONFIG.segments.ecoText || "";
-    document.getElementById("segmentMidText").value = CONFIG.segments.midText || "";
-    document.getElementById("segmentLuxText").value = CONFIG.segments.luxText || "";
-
-    // form
-    document.getElementById("formEnabledFields").value = CONFIG.form.enabledFields;
-    document.getElementById("formWpTemplate").value = CONFIG.form.wpTemplate;
-    document.getElementById("formSuccessText").value = CONFIG.form.successText;
-
-    // theme
-    document.getElementById("themeAccent").value = CONFIG.theme.accent;
-    document.getElementById("themeAccentSoft").value = CONFIG.theme.accentSoft;
-    document.getElementById("themeRadius").value = CONFIG.theme.radius;
-    document.getElementById("themeMode").value = CONFIG.theme.mode;
-    document.getElementById("logoPath").value = CONFIG.theme.logoPath;
-    document.getElementById("sliderImages").value = CONFIG.theme.sliderImages || "";
-    document.getElementById("perfNote").value = CONFIG.theme.perfNote || "";
-    document.getElementById("clockEnabled").value = CONFIG.theme.clockEnabled ? "true" : "false";
-
-    // footer / notes
-    document.getElementById("copyrightText").value = CONFIG.footer.copyright;
-    document.getElementById("designCredit").value = CONFIG.footer.designCredit;
-    document.getElementById("releaseNotes").value = CONFIG.releaseNotes || "";
-
-    // login settings
-    document.getElementById("loginLimit").value = CONFIG.loginSettings.limit;
-    document.getElementById("sessionTimeout").value = CONFIG.loginSettings.timeoutMinutes;
-
-    updateSummaryBadges();
-  }
-
-  function updateSummaryBadges() {
-    const vehicles = loadVehicles();
-    document.getElementById("summaryVehicles").textContent = vehicles.length;
-    document.getElementById("summaryTestimonials").textContent = CONFIG.testimonials.length;
-    document.getElementById("summaryFaqs").textContent = CONFIG.faqs.length;
-    document.getElementById("summaryCampaignStatus").textContent = CONFIG.hero.campaignEnabled ? "Aktif" : "Pasif";
-    document.getElementById("summaryHeroTitle").textContent = CONFIG.hero.titleTr;
-    document.getElementById("summaryHeroTitleEn").textContent = CONFIG.hero.titleEn;
-    document.getElementById("summaryAgeEco").textContent = CONFIG.rules.ageEco;
-    document.getElementById("summaryAgeLux").textContent = CONFIG.rules.ageLux;
-    document.getElementById("summaryLicEco").textContent = CONFIG.rules.licEco + " yıl";
-    document.getElementById("summaryLicLux").textContent = CONFIG.rules.licLux + " yıl";
-  }
-
-  /* --- bind inputs --- */
-
-  function bindInput(id, path, transformFn) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const handler = () => {
-      document.getElementById("statusSaved").textContent = "Kaydedilmedi";
-      const value = transformFn ? transformFn(el.value) : el.value;
-      const parts = path.split(".");
-      let obj = CONFIG;
-      for (let i = 0; i < parts.length - 1; i++) {
-        obj = obj[parts[i]];
-      }
-      obj[parts[parts.length - 1]] = value;
-      saveConfig();
-    };
-    el.addEventListener("change", handler);
-    el.addEventListener("blur", handler);
-  }
-
-  // meta
-  bindInput("metaTitle", "meta.title");
-  bindInput("metaDescription", "meta.description");
-  bindInput("metaKeywords", "meta.keywords");
-  bindInput("ogImage", "meta.ogImage");
-  bindInput("hashtags", "meta.hashtags", v => v.split("\n").map(s => s.trim()).filter(Boolean));
-
-  // hero
-  bindInput("heroTitleTr", "hero.titleTr");
-  bindInput("heroTitleEn", "hero.titleEn");
-  bindInput("heroSubtitle", "hero.subtitle");
-  bindInput("heroCtaCall", "hero.ctaCall");
-  bindInput("heroCtaWp", "hero.ctaWp");
-  bindInput("campaignText", "hero.campaignText");
-  bindInput("campaignEnabled", "hero.campaignEnabled", v => v === "true");
-  bindInput("airportNote", "hero.airportNote");
-
-  // why us
-  bindInput("whyUsList", "whyUs", v => v.split("\n").map(s => s.trim()).filter(Boolean));
-  bindInput("corporateText", "corporateText");
-
-  // contact
-  bindInput("contactAddress", "contact.address");
-  bindInput("contactPhone1", "contact.phone1");
-  bindInput("contactPhone2", "contact.phone2");
-  bindInput("contactWhatsapp", "contact.whatsapp");
-  bindInput("contactMail", "contact.email");
-  bindInput("contactInsta", "contact.instagram");
-  bindInput("workingHours", "contact.workingHours");
-  bindInput("holidayNotes", "contact.holidayNotes");
-
-  // rules
-  bindInput("ruleAgeEco", "rules.ageEco", v => Number(v) || 0);
-  bindInput("ruleAgeLux", "rules.ageLux", v => Number(v) || 0);
-  bindInput("ruleLicEco", "rules.licEco", v => Number(v) || 0);
-  bindInput("ruleLicLux", "rules.licLux", v => Number(v) || 0);
-  bindInput("ruleKmSummary", "rules.kmSummary");
-  bindInput("termsText", "rules.termsText");
-
-  // segments
-  bindInput("segmentEcoText", "segments.ecoText");
-  bindInput("segmentMidText", "segments.midText");
-  bindInput("segmentLuxText", "segments.luxText");
-
-  // form
-  bindInput("formEnabledFields", "form.enabledFields");
-  bindInput("formWpTemplate", "form.wpTemplate");
-  bindInput("formSuccessText", "form.successText");
-
-  // theme
-  bindInput("themeAccent", "theme.accent");
-  bindInput("themeAccentSoft", "theme.accentSoft");
-  bindInput("themeRadius", "theme.radius", v => Number(v) || 0);
-  bindInput("themeMode", "theme.mode");
-  bindInput("logoPath", "theme.logoPath");
-  bindInput("sliderImages", "theme.sliderImages");
-  bindInput("perfNote", "theme.perfNote");
-  bindInput("clockEnabled", "theme.clockEnabled", v => v === "true");
-
-  // footer / notes
-  bindInput("copyrightText", "footer.copyright");
-  bindInput("designCredit", "footer.designCredit");
-  bindInput("releaseNotes", "releaseNotes");
-
-  // login settings
-  bindInput("loginLimit", "loginSettings.limit", v => Number(v) || 5);
-  bindInput("sessionTimeout", "loginSettings.timeoutMinutes", v => Number(v) || 20);
-
-  /* ---------- testimonials / faqs ---------- */
-
-  function renderTestimonials() {
-    const tbody = document.querySelector("#testimonialTable tbody");
-    tbody.innerHTML = "";
-    CONFIG.testimonials.forEach((t, i) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${t.name}</td>
-        <td>${t.text}</td>
-        <td>${"★".repeat(t.stars || 5)}</td>
-        <td><button class="btn btn-xs btn-danger" data-index="${i}">Sil</button></td>
-      `;
-      tbody.appendChild(tr);
-    });
-    tbody.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-index"));
-        CONFIG.testimonials.splice(idx, 1);
-        saveConfig();
-        renderTestimonials();
-        updateSummaryBadges();
-      });
-    });
-  }
-
-  document.getElementById("addTestimonialBtn").addEventListener("click", () => {
-    const name = document.getElementById("testimonialName").value.trim();
-    const text = document.getElementById("testimonialText").value.trim();
-    const stars = Number(document.getElementById("testimonialStars").value) || 5;
-    if (!name || !text) {
-      alert("İsim ve yorum zorunludur.");
-      return;
-    }
-    CONFIG.testimonials.push({ name, text, stars });
-    document.getElementById("testimonialName").value = "";
-    document.getElementById("testimonialText").value = "";
-    saveConfig();
-    renderTestimonials();
-    updateSummaryBadges();
-  });
-
-  function renderFaqs() {
-    const tbody = document.querySelector("#faqTable tbody");
-    tbody.innerHTML = "";
-    CONFIG.faqs.forEach((f, i) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${f.q}</td>
-        <td>${f.a}</td>
-        <td><button class="btn btn-xs btn-danger" data-index="${i}">Sil</button></td>
-      `;
-      tbody.appendChild(tr);
-    });
-    tbody.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-index"));
-        CONFIG.faqs.splice(idx, 1);
-        saveConfig();
-        renderFaqs();
-        updateSummaryBadges();
-      });
-    });
-  }
-
-  document.getElementById("addFaqBtn").addEventListener("click", () => {
-    const q = document.getElementById("faqQuestion").value.trim();
-    const a = document.getElementById("faqAnswer").value.trim();
-    if (!q || !a) {
-      alert("Soru ve cevap zorunludur.");
-      return;
-    }
-    CONFIG.faqs.push({ q, a });
-    document.getElementById("faqQuestion").value = "";
-    document.getElementById("faqAnswer").value = "";
-    saveConfig();
-    renderFaqs();
-    updateSummaryBadges();
-  });
-
-  /* tab switch (yorum/sss) */
-  document.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tab = btn.getAttribute("data-tab");
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      document.querySelectorAll(".tab-panel").forEach(p => {
-        p.classList.toggle("active", p.id === "tab-" + tab);
-      });
-    });
-  });
-
-  /* ---------- VEHICLES ---------- */
-
-  let VEHICLES = loadVehicles();
-
-  function renderVehicles() {
-    const tbody = document.querySelector("#vehicleTable tbody");
-    tbody.innerHTML = "";
-    const search = document.getElementById("vehicleSearch").value.toLowerCase();
-    const segFilter = document.getElementById("vehicleFilterSegment").value;
-
-    VEHICLES.filter(v => {
-      const str = (v.brand + " " + v.model).toLowerCase();
-      if (search && !str.includes(search)) return false;
-      if (segFilter && v.segment !== segFilter) return false;
-      return true;
-    }).forEach((v, i) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${v.brand} ${v.model}</td>
-        <td>${v.segment}</td>
-        <td>${v.status}</td>
-        <td>${v.priceDaily || "-"}</td>
-        <td>
-          <button class="btn btn-xs btn-secondary" data-edit="${i}">Düzenle</button>
-          <button class="btn btn-xs btn-danger" data-del="${i}">Sil</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
+      const configObj = {
+        title: "GÜR RENT A CAR | KARAMAN ARAÇ KİRALAMA",
+        heroTitle,
+        heroSub,
+        phone,
+        whatsapp,
+        campaign,
+        footer
+      };
+      const js = "const SITE_CONFIG = " + JSON.stringify(configObj, null, 2) + ";\n";
+      outEl.value = js;
+      downloadFile("site-config.js", js);
     });
 
-    tbody.querySelectorAll("[data-edit]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-edit"));
-        fillVehicleForm(VEHICLES[idx]);
-      });
-    });
-    tbody.querySelectorAll("[data-del]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-del"));
-        if (!confirm("Bu aracı silmek istiyor musunuz?")) return;
-        VEHICLES.splice(idx, 1);
-        saveVehicles(VEHICLES);
-        renderVehicles();
-        updateSummaryBadges();
-      });
-    });
+    // index.html üret (mini şablon)
+    document.getElementById("genIndexBtn").addEventListener("click", () => {
+      const heroTitle = document.getElementById("heroTitle").value.trim();
+      const heroSub   = document.getElementById("heroSub").value.trim();
+      const phone     = document.getElementById("phone").value.trim();
+      const whatsapp  = document.getElementById("whatsapp").value.trim();
+      const campaign  = document.getElementById("campaign").value.trim();
+      const footer    = document.getElementById("footerText").value.trim();
 
-    document.getElementById("summaryVehicles").textContent = VEHICLES.length;
-  }
-
-  function fillVehicleForm(v) {
-    document.getElementById("vehicleId").value = v.id || "";
-    document.getElementById("vehicleSegment").value = v.segment || "ekonomik";
-    document.getElementById("vehicleStatus").value = v.status || "uygun";
-    document.getElementById("vehicleBrand").value = v.brand || "";
-    document.getElementById("vehicleModel").value = v.model || "";
-    document.getElementById("vehicleYear").value = v.year || "";
-    document.getElementById("vehicleTransmission").value = v.transmission || "";
-    document.getElementById("vehicleFuel").value = v.fuel || "";
-    document.getElementById("vehiclePrice").value = v.priceDaily || "";
-    document.getElementById("vehicleTags").value = (v.tags || []).join(",");
-    document.getElementById("vehicleImage").value = v.image || "";
-  }
-
-  document.getElementById("saveVehicleBtn").addEventListener("click", () => {
-    const v = {
-      id: document.getElementById("vehicleId").value.trim() || ("car-" + Date.now()),
-      segment: document.getElementById("vehicleSegment").value,
-      status: document.getElementById("vehicleStatus").value,
-      brand: document.getElementById("vehicleBrand").value.trim(),
-      model: document.getElementById("vehicleModel").value.trim(),
-      year: Number(document.getElementById("vehicleYear").value) || "",
-      transmission: document.getElementById("vehicleTransmission").value.trim(),
-      fuel: document.getElementById("vehicleFuel").value.trim(),
-      priceDaily: Number(document.getElementById("vehiclePrice").value) || "",
-      tags: document.getElementById("vehicleTags").value.split(",").map(s => s.trim()).filter(Boolean),
-      image: document.getElementById("vehicleImage").value.trim()
-    };
-    if (!v.brand || !v.model) {
-      alert("Marka ve model zorunludur.");
-      return;
-    }
-    const existingIdx = VEHICLES.findIndex(x => x.id === v.id);
-    if (existingIdx >= 0) VEHICLES[existingIdx] = v;
-    else VEHICLES.push(v);
-
-    saveVehicles(VEHICLES);
-    renderVehicles();
-    updateSummaryBadges();
-    alert("Araç kaydedildi.");
-  });
-
-  document.getElementById("clearVehicleFormBtn").addEventListener("click", () => {
-    fillVehicleForm({});
-  });
-
-  document.getElementById("vehicleSearch").addEventListener("input", renderVehicles);
-  document.getElementById("vehicleFilterSegment").addEventListener("change", renderVehicles);
-
-  /* ---------- RESERVATIONS ---------- */
-
-  let RESERVATIONS = loadReservations();
-
-  function renderReservations() {
-    const tbody = document.querySelector("#reservationTable tbody");
-    tbody.innerHTML = "";
-    RESERVATIONS.forEach((r, i) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${r.name}</td>
-        <td>${r.phone}</td>
-        <td>${r.car}</td>
-        <td>${r.days}</td>
-        <td><button class="btn btn-xs btn-danger" data-del="${i}">Sil</button></td>
-      `;
-      tbody.appendChild(tr);
-    });
-    tbody.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-del"));
-        RESERVATIONS.splice(idx, 1);
-        saveReservations(RESERVATIONS);
-        renderReservations();
-      });
-    });
-  }
-
-  document.getElementById("addReservationBtn").addEventListener("click", () => {
-    const r = {
-      name: document.getElementById("resName").value.trim(),
-      phone: document.getElementById("resPhone").value.trim(),
-      car: document.getElementById("resCar").value.trim(),
-      days: Number(document.getElementById("resDays").value) || 1,
-      note: document.getElementById("resNote").value.trim(),
-      time: nowString()
-    };
-    if (!r.name || !r.phone) {
-      alert("Ad ve telefon zorunludur.");
-      return;
-    }
-    RESERVATIONS.push(r);
-    saveReservations(RESERVATIONS);
-    renderReservations();
-    document.getElementById("resName").value = "";
-    document.getElementById("resPhone").value = "";
-    document.getElementById("resCar").value = "";
-    document.getElementById("resNote").value = "";
-  });
-
-  document.getElementById("exportReservationCsvBtn").addEventListener("click", () => {
-    if (!RESERVATIONS.length) {
-      alert("Henüz kayıt yok.");
-      return;
-    }
-    const rows = [["Ad Soyad", "Telefon", "Araç", "Gün", "Not", "Tarih"]];
-    RESERVATIONS.forEach(r => {
-      rows.push([r.name, r.phone, r.car, r.days, r.note, r.time]);
-    });
-    const csv = rows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(";")).join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "reservations.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
-
-  /* ---------- USERS ---------- */
-
-  function renderUsers() {
-    const tbody = document.querySelector("#userTable tbody");
-    tbody.innerHTML = "";
-    USERS.forEach((u, i) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${u.username}</td>
-        <td>${u.role}</td>
-        <td>
-          <button class="btn btn-xs btn-secondary" data-edit="${i}">Düzenle</button>
-          ${u.role === "owner" ? "" : '<button class="btn btn-xs btn-danger" data-del="'+i+'">Sil</button>'}
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-    tbody.querySelectorAll("[data-edit]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const u = USERS[Number(btn.getAttribute("data-edit"))];
-        document.getElementById("userName").value = u.username;
-        document.getElementById("userPassword").value = u.password;
-        document.getElementById("userRole").value = u.role;
-      });
-    });
-    tbody.querySelectorAll("[data-del]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-del"));
-        if (!confirm("Kullanıcı silinsin mi?")) return;
-        USERS.splice(idx, 1);
-        saveUsers();
-        renderUsers();
-        renderLoginUsers();
-      });
-    });
-  }
-
-  document.getElementById("addUserBtn").addEventListener("click", () => {
-    const username = document.getElementById("userName").value.trim();
-    const password = document.getElementById("userPassword").value.trim();
-    const role = document.getElementById("userRole").value;
-    if (!username || !password) {
-      alert("Kullanıcı adı ve şifre zorunludur.");
-      return;
-    }
-    const existingIdx = USERS.findIndex(u => u.username === username);
-    if (existingIdx >= 0) {
-      USERS[existingIdx] = { username, password, role };
-    } else {
-      USERS.push({ username, password, role });
-    }
-    saveUsers();
-    renderUsers();
-    renderLoginUsers();
-    alert("Kullanıcı kaydedildi.");
-  });
-
-  renderUsers();
-
-  /* ---------- BACKUP / RESTORE ---------- */
-
-  document.getElementById("exportConfigBtn").addEventListener("click", () => {
-    const blob = new Blob([JSON.stringify(CONFIG, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "gur-rentacar-config.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
-
-  document.getElementById("importConfigInput").addEventListener("change", e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const parsed = JSON.parse(reader.result);
-        CONFIG = parsed;
-        saveConfig();
-        applyConfigToForm();
-        alert("Yedek başarıyla yüklendi.");
-      } catch (err) {
-        alert("Geçersiz JSON dosyası.");
-      }
-    };
-    reader.readAsText(file);
-  });
-
-  document.getElementById("resetConfigBtn").addEventListener("click", () => {
-    if (!confirm("Tüm ayarları sıfırlamak istediğinize emin misiniz?")) return;
-    localStorage.removeItem(LS_CONFIG_KEY);
-    CONFIG = loadConfig();
-    saveConfig();
-    applyConfigToForm();
-  });
-
-  /* ---------- SCRIPT & INDEX ÜRETİMİ ---------- */
-
-  function generateSiteConfigJs() {
-    const js = `/* GÜR RENT A CAR - site-config.js (admin panel çıkışı) */
-const SITE_CONFIG = ${JSON.stringify(CONFIG, null, 2)};
-`;
-    return js;
-  }
-
-  document.getElementById("downloadSiteConfigBtn").addEventListener("click", () => {
-    const js = generateSiteConfigJs();
-    const blob = new Blob([js], { type: "text/javascript" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "site-config.js";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
-
-  document.getElementById("downloadIndexBtn").addEventListener("click", () => {
-    const html = `<!DOCTYPE html>
+      const minimal = `<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>${CONFIG.meta.title}</title>
+  <title>GÜR RENT A CAR | KARAMAN ARAÇ KİRALAMA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="${CONFIG.meta.description}" />
-  <meta name="keywords" content="${CONFIG.meta.keywords}" />
-  <meta property="og:title" content="${CONFIG.meta.title}" />
-  <meta property="og:description" content="${CONFIG.meta.description}" />
-  ${CONFIG.meta.ogImage ? `<meta property="og:image" content="${CONFIG.meta.ogImage}" />` : ""}
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="${heroSub}" />
 </head>
 <body>
-  <!-- Bu dosya admin panelinden otomatik oluşturulan basit bir iskelet dosyadır. -->
-  <script src="site-config.js"></script>
-  <script>
-    // Buraya, SITE_CONFIG'i kullanarak sayfayı dolduran JS kodunu ekleyebilirsiniz.
-    console.log("SITE_CONFIG", SITE_CONFIG);
-  </script>
+  <h1>${heroTitle}</h1>
+  <p>${heroSub}</p>
+  <p>Telefon: ${phone}</p>
+  <p>WhatsApp: ${whatsapp}</p>
+  <p>${campaign}</p>
+  <hr />
+  <pre>${footer}</pre>
 </body>
 </html>`;
-    const blob = new Blob([html], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "index.html";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
 
-  /* ---------- SESSION TIMER ---------- */
+      outEl.value = minimal;
+      downloadFile("index.html", minimal);
+    });
 
-  function updateSessionTimer() {
-    const elapsedMs = Date.now() - SESSION.start;
-    const totalSec = Math.floor(elapsedMs / 1000);
-    const min = String(Math.floor(totalSec / 60)).padStart(2, "0");
-    const sec = String(totalSec % 60).padStart(2, "0");
-    const text = `${min}:${sec}`;
-    document.getElementById("statusSession").textContent = text;
-    document.getElementById("systemSession").textContent = text;
-
-    const timeoutMin = CONFIG.loginSettings.timeoutMinutes || 20;
-    if (totalSec > timeoutMin * 60) {
-      alert("Oturum süresi doldu. Güvenlik için çıkış yapılıyor.");
-      doLogout();
-    }
-  }
-
-  function doLogout() {
-    loginOverlay.style.display = "flex";
-    loginPasswordInput.value = "";
-    SESSION.currentUser = null;
-    SESSION.start = Date.now();
-  }
-
-  setInterval(updateSessionTimer, 1000);
-
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    if (!confirm("Çıkış yapılsın mı?")) return;
-    doLogout();
-  });
-
-  /* ---------- tabs in system / content already hooked, just final init ---------- */
-
-  document.getElementById("systemDevice").textContent = navigator.userAgent.split(")").shift() + ")";
-  applyConfigToForm();
-  renderVehicles();
-  renderReservations();
-  saveConfig(); // initial save to ensure timestamps
-})();
-</script>
+    // Temizle
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      document.getElementById("heroTitle").value = "";
+      document.getElementById("heroSub").value   = "";
+      document.getElementById("phone").value     = "";
+      document.getElementById("whatsapp").value  = "";
+      document.getElementById("campaign").value  = "";
+      document.getElementById("footerText").value= "";
+      outEl.value = "";
+    });
+  </script>
 </body>
 </html>
